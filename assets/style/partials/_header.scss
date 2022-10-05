@@ -1,0 +1,84 @@
+@use "variables" as variables;
+
+@media only screen and (max-width: 540px) {
+
+  .nav__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 100%;
+    height: 70px;
+    left: 0;
+    top: 0;
+  }
+
+  .nav__menu__logo {
+    width: 70px;
+    height: 48.46px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  .nav__menu__logo__img {
+    left: 29.06%;
+    right: 29.02%;
+    top: 0;
+    bottom: 30.24%;
+    padding: 0 18px;
+  }
+
+  .nav__menu__icon {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 36px;
+    width: 30px;
+    height: 23px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    cursor: pointer;
+  }
+
+  .nav__menu__icon__img {
+    width: 30px;
+    height: 23px;
+    font-family: 'Material Icons', "sans-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 22px;
+    letter-spacing: 0.85px;
+    color: variables.$grey-color;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  .nav__menu-links {
+    text-decoration: none;
+    min-width: fit-content;
+    cursor: pointer;
+    list-style-type: none;
+    flex: none;
+    padding: 0;
+
+    & a {
+      color: variables.$blue-color;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 17px;
+      display: block;
+      flex: none;
+    }
+
+    & :hover {
+      background-color: variables.$blue-color;
+      color: variables.$white-color;
+    }
+  }
+}

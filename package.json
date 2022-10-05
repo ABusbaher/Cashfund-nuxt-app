@@ -25,9 +25,12 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.4.4",
     "eslint": "^8.24.0",
+    "fibers": "^5.0.3",
+    "hgrid-css": "^0.7.1-beta",
     "jest": "^27.4.4",
+    "node-sass": "^7.0.3",
     "sass": "^1.55.0",
-    "sass-loader": "10.1.1",
+    "sass-loader": "^10.3.1",
     "vue-jest": "^3.0.4"
   }
 }
