@@ -1,75 +1,59 @@
+@use "variables" as variables;
+
 @media only screen and (max-width: 540px) {
-  //.banner-container {
-  //  width: 100%;
-  //  height: 470px;
-  //  flex: none;
-  //  order: 1;
-  //  flex-grow: 0;
-  //}
-  //
-  //.hero-banner {
-  //  position: absolute;
-  //  width: 100%;
-  //  height: 1123px;
-  //  left: -31.51px;
-  //  top: -289px;
-  //}
-  //
-  //.hero-banner__bkg-img {
-  //  position: absolute;
-  //  width: 660.28px;
-  //  height: 1107px;
-  //  left: -31.51px;
-  //  top: -289px;
-  //  background-image: url('assets/images/V_redraw-without-bg-1_9.png');
-  //  opacity: 0.2;
-  //}
-  //
-  //.hero-banner__img {
-  //  position: absolute;
-  //  left: -0.70px;
-  //  top: -105px;
-  //  width: 100%;
-  //  height: 939px;
-  //  background-image: url('assets/images/pexels-pixabay-372470_1.png');
-  //}
-  //
-  //.hero-banner__title {
-  //  position: absolute;
-  //  width: 440px;
-  //  height: 154px;
-  //  left: 20px;
-  //  top: 127px;
-  //  font-style: normal;
-  //  font-weight: 400;
-  //  font-size: 40px;
-  //  line-height: 50px;
-  //  color: #FFFFFF;
-  //}
-  //
-  //.hero-banner__desc {
-  //  position: absolute;
-  //  width: 440px;
-  //  height: 60px;
-  //  left: 20px;
-  //  top: 297px;
-  //  font-style: normal;
-  //  font-weight: 400;
-  //  font-size: 20px;
-  //  line-height: 30px;
-  //  display: flex;
-  //  align-items: center;
-  //  color: #FFFFFF;
-  //}
-  //
-  //.hero-banner__rectangle-4 {
-  //  position: absolute;
-  //  width: 370.31px;
-  //  height: 800px;
-  //  left: 104.95px;
-  //  top: -69px;
-  //  background: #009CC4;
-  //  mix-blend-mode: multiply;
-  //}
+  .hero-banner {
+    position: relative;
+    max-width: 100%;
+    height: 700px;
+  }
+
+  .hero-banner__bkg-img {
+    position: absolute;
+    max-width: 100%;
+    background-image: url('assets/images/V_redraw-without-bg-1_9.png');
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    left: 0;
+  }
+
+  .hero-banner__img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-banner__title {
+    position: absolute;
+    max-width: 440px;
+    max-height: 200px;
+    left: 20px;
+    top: 90px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 50px;
+    color: variables.$white-color;
+    margin: 0;
+  }
+
+  .hero-banner__desc {
+    position: absolute;
+    max-width: 440px;
+    max-height: 160px;
+    left: 20px;
+    top: 290px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: variables.$white-color;
+    margin: 0;
+  }
+
 }
 
