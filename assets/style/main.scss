@@ -1,11 +1,12 @@
 @use "partials/variables" as variables;
 @import "partials/heroBanner";
 @import "partials/header";
+@import "partials/contentParagraph";
 
 body {
   position: relative;
   background: variables.$white-color;
-  font-family: 'PT Serif', serif;
+  font-family: variables.$pt-serif-font;
 }
 
 @media only screen and (max-width: 540px) {

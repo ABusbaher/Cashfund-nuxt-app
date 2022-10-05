@@ -1,0 +1,71 @@
+@use "variables" as variables;
+
+@media only screen and (max-width: 540px) {
+  .paragraph-content {
+    padding: 50px 20px 0 20px;
+
+    & h4 {
+      width: 119px;
+      height: 17px;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: variables.$blue-color;
+      margin: 0;
+    }
+
+    & h2 {
+      max-width: 400px;
+      max-height: 200px;
+      font-family: variables.$pt-serif-font;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 38px;
+      color: variables.$grey-color;
+      margin: 10px 0 25px 0;
+    }
+
+    & button {
+      padding: 14px 28px;
+      max-width: 199px;
+      height: 46px;
+      border: none;
+      cursor: pointer;
+      margin: 0 0 20px 0;
+    }
+  }
+
+  .paragraph-content__desc {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    & hr {
+      width: 15px;
+      height: 60px;
+      background-color: variables.$blue-color;
+      margin: 0 20px 0 0;
+    }
+
+    & p {
+      font-family: variables.$pt-serif-font;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: variables.$medium-grey-color;
+      margin: 5px 20px 20px 0;
+    }
+  }
+
+  .paragraph-content__slot-img {
+    width: 100%;
+    height: 300px;
+    margin: 20px 0 0 0;
+  }
+}
