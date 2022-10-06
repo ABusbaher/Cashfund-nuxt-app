@@ -5,6 +5,7 @@
     position: relative;
     max-width: 100%;
     height: 700px;
+    overflow: hidden;
   }
 
   .hero-banner__bkg-img {
@@ -16,6 +17,7 @@
     height: 100%;
     background-size: cover;
     left: 0;
+    z-index: 2;
   }
 
   .hero-banner__img {
@@ -37,6 +39,7 @@
     line-height: 50px;
     color: variables.$white-color;
     margin: 0;
+    z-index: 2;
   }
 
   .hero-banner__desc {
@@ -53,6 +56,19 @@
     align-items: center;
     color: variables.$white-color;
     margin: 0;
+    z-index: 2;
+  }
+
+  .rectangle-4 {
+    position: absolute;
+    width: 430px;
+    height: 770px;
+    left: 33%;
+    top: -25px;
+    background: variables.$blue-color;
+    mix-blend-mode: multiply;
+    transform: rotate(-6deg);
+    z-index: 1;
   }
 
 }

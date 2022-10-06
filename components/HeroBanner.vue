@@ -30,5 +30,6 @@ export default {
     <p class="hero-banner__desc">
       {{ description }}
     </p>
+    <div class="rectangle-4" />
   </div>
 </template>

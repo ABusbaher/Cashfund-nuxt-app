@@ -31,16 +31,18 @@ export default {
 }
 </script>
 <template>
-  <div class="paragraph-content">
-    <h4>{{ subtitle.toUpperCase() }}</h4>
-    <h2>{{ title }}</h2>
-    <div class="paragraph-content__desc">
-      <hr>
-      <p>{{ description }}</p>
+  <div>
+    <div class="paragraph-content">
+      <h4>{{ subtitle.toUpperCase() }}</h4>
+      <h2>{{ title }}</h2>
+      <div class="paragraph-content__desc">
+        <hr>
+        <p>{{ description }}</p>
+      </div>
+      <nuxt-link :to="link">
+        <TheButton text="more about us" />
+      </nuxt-link>
     </div>
-    <nuxt-link :to="link">
-      <TheButton text="more about us" />
-    </nuxt-link>
     <slot name="main" />
   </div>
 </template>
