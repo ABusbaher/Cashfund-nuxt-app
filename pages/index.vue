@@ -1,8 +1,9 @@
 <script>
-import HeroBanner from '@/components/HeroBanner.vue'
-import ContentParagraph from '@/components/ContentParagraph.vue'
-import BulletParagraph from '@/components/BulletParagraph.vue'
-import IconWithText from '@/components/IconWithText'
+import HeroBanner from '@/components/HeroBanner.vue';
+import ContentParagraph from '@/components/ContentParagraph.vue';
+import BulletParagraph from '@/components/BulletParagraph.vue';
+import IconWithText from '@/components/IconWithText.vue';
+import SimpleParagraph from '@/components/SimpleParagraph.vue';
 
 export default {
   name: 'IndexPage',
@@ -10,7 +11,8 @@ export default {
     HeroBanner,
     ContentParagraph,
     BulletParagraph,
-    IconWithText
+    IconWithText,
+    SimpleParagraph,
   },
   data () {
     return {
@@ -42,20 +44,20 @@ export default {
       iconsWithText: [
         {
           text: 'What would we do',
-          iconName: 'work-from-home.svg',
+          iconName: 'work-from-home.svg'
         },
         {
           text: 'Special Purpose Investments the Cashfund way',
-          iconName: 'save-money.svg',
+          iconName: 'save-money.svg'
         },
         {
           text: 'Borderless Investing Community with focused vertical',
-          iconName: 'community.svg',
+          iconName: 'community.svg'
         },
         {
           text: 'Holistic view to invest in the best opportunities',
-          iconName: 'star.svg',
-        },
+          iconName: 'star.svg'
+        }
       ]
     }
   }
@@ -78,7 +80,11 @@ export default {
       link="/about"
     >
       <template #main>
-        <img class="paragraph-content__slot-img" :src="require('@/assets/images/photo-1519085360753-af0119f7cbe7_1.jpg')" alt="title">
+        <img
+          class="paragraph-content__slot-img"
+          :src="require('@/assets/images/photo-1519085360753-af0119f7cbe7_1.jpg')"
+          alt="title"
+        >
       </template>
     </ContentParagraph>
     <div v-for="bullet in bullets" :key="bullet.number" class="bullet-paragraphs">
@@ -98,13 +104,20 @@ export default {
       link="/contact"
     >
       <template #main>
-        <div v-for="icon in iconsWithText">
+        <div v-for="icon in iconsWithText" :key="icon.text">
           <IconWithText
             :text="icon.text"
-            :icon="icon.iconName">
-          </IconWithText>
+            :icon="icon.iconName"
+          />
         </div>
       </template>
     </ContentParagraph>
+    <SimpleParagraph
+      title="Diversity breeds creativity, leading to better decisions and outcomes at Cashfund"
+      subtitle="our staff"
+      description="We have a formidable, coherent, accomplished team, bringing in differentiated domain expertise,
+       access, thoughtful deliberation and organization building to the business we create and build."
+      bkg-color="#F3F0E9"
+    />
   </div>
 </template>

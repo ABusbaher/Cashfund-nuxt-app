@@ -3,11 +3,17 @@
 @import "partials/header";
 @import "partials/contentParagraph";
 @import "partials/bulletParagraph";
+@import "partials/simpleParagraph";
 
 body {
   position: relative;
   background: variables.$white-color;
   font-family: variables.$pt-serif-font;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 540px) {
