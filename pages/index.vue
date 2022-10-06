@@ -1,7 +1,8 @@
 <script>
-import HeroBanner from '@/components/HeroBanner.vue';
-import ContentParagraph from '@/components/ContentParagraph.vue';
-import BulletParagraph from '@/components/BulletParagraph.vue';
+import HeroBanner from '@/components/HeroBanner.vue'
+import ContentParagraph from '@/components/ContentParagraph.vue'
+import BulletParagraph from '@/components/BulletParagraph.vue'
+import IconWithText from '@/components/IconWithText'
 
 export default {
   name: 'IndexPage',
@@ -9,6 +10,7 @@ export default {
     HeroBanner,
     ContentParagraph,
     BulletParagraph,
+    IconWithText
   },
   data () {
     return {
@@ -36,6 +38,24 @@ export default {
             'business and consumer in its path.',
           bkgColor: '#F3F0E9'
         }
+      ],
+      iconsWithText: [
+        {
+          text: 'What would we do',
+          iconName: 'work-from-home.svg',
+        },
+        {
+          text: 'Special Purpose Investments the Cashfund way',
+          iconName: 'save-money.svg',
+        },
+        {
+          text: 'Borderless Investing Community with focused vertical',
+          iconName: 'community.svg',
+        },
+        {
+          text: 'Holistic view to invest in the best opportunities',
+          iconName: 'star.svg',
+        },
       ]
     }
   }
@@ -69,5 +89,22 @@ export default {
         :bkg-color="bullet.bkgColor"
       />
     </div>
+    <ContentParagraph
+      subtitle="Who We Are"
+      title="We are Leaders on the Market"
+      description="We will identify, conceive and build business that will create substantial
+      long-term value for our investing community"
+      button-text="Read more"
+      link="/contact"
+    >
+      <template #main>
+        <div v-for="icon in iconsWithText">
+          <IconWithText
+            :text="icon.text"
+            :icon="icon.iconName">
+          </IconWithText>
+        </div>
+      </template>
+    </ContentParagraph>
   </div>
 </template>

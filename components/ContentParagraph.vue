@@ -26,6 +26,11 @@ export default {
       type: String,
       request: true,
       default: ''
+    },
+    buttonText: {
+      type: String,
+      request: true,
+      default: ''
     }
   }
 }
@@ -40,7 +45,7 @@ export default {
         <p>{{ description }}</p>
       </div>
       <nuxt-link :to="link">
-        <TheButton text="more about us" />
+        <TheButton :text="buttonText" />
       </nuxt-link>
     </div>
     <slot name="main" />

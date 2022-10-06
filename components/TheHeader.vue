@@ -1,5 +1,5 @@
 <script>
-import LogoNameSVG from '@/components/LogoNameSVG.vue'
+import LogoNameSVG from '@/components/icons/LogoName.vue'
 
 export default {
   name: 'TheHeader',
