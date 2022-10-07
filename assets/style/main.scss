@@ -4,6 +4,7 @@
 @import "partials/contentParagraph";
 @import "partials/bulletParagraph";
 @import "partials/simpleParagraph";
+@import "partials/footer";
 
 body {
   position: relative;
@@ -14,6 +15,14 @@ body {
 button {
   border: none;
   cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+
+  & li a {
+    text-decoration: none;
+  }
 }
 
 @media only screen and (max-width: 540px) {

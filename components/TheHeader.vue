@@ -1,11 +1,7 @@
 <script>
-import LogoNameSVG from '@/components/icons/LogoName.vue'
 
 export default {
   name: 'TheHeader',
-  components: {
-    LogoNameSVG
-  },
   data () {
     return {
       showLinks: false,
@@ -32,8 +28,7 @@ export default {
   <div class="nav">
     <div class="nav__menu">
       <NuxtLink class="nav__menu__logo" to="/">
-        <img class="nav__menu__logo__img" src="@/assets/images/Vector.png" alt="logo">
-        <LogoNameSVG />
+        <img class="nav__menu__logo__img" src="@/assets/images/icons/logo.svg" alt="logo">
       </NuxtLink>
       <div class="nav__menu__icon" @click="showLinks = !showLinks">
         <img class="nav__menu__icon__img" src="@/assets/images/menu.png" alt="menu">

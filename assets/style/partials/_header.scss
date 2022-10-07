@@ -62,15 +62,12 @@
   .nav__menu-links {
     text-decoration: none;
     min-width: fit-content;
-    cursor: pointer;
-    list-style-type: none;
     flex: none;
     padding: 0;
 
     & a {
       color: variables.$blue-color;
       padding: 14px 20px;
-      text-decoration: none;
       font-size: 17px;
       display: block;
       flex: none;
