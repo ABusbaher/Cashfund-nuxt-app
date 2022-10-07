@@ -68,7 +68,6 @@ export default {
     <HeroBanner
       title="A special purpose investment company"
       description="You invest in our deep domain expertise"
-      :image-path="require('@/assets/images/pexels-pixabay-372470_1.png')"
     />
     <ContentParagraph
       subtitle="welcome there!"

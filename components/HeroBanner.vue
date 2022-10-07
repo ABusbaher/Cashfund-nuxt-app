@@ -2,11 +2,6 @@
 export default {
   name: 'HeroBanner',
   props: {
-    imagePath: {
-      type: String,
-      request: true,
-      default: ''
-    },
     title: {
       type: String,
       request: true,
@@ -22,8 +17,8 @@ export default {
 </script>
 <template>
   <div class="hero-banner">
-    <img :src="imagePath" :alt="title" class="hero-banner__img">
-    <img :src="require('@/assets/images/V_redraw-without-bg-1_9.png')" alt="background img" class="hero-banner__bkg-img">
+    <div class="hero-banner__main-img"></div>
+    <div class="hero-banner__bkg-img"></div>
     <h1 class="hero-banner__title">
       {{ title }}
     </h1>

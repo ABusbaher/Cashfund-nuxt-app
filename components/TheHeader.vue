@@ -1,7 +1,11 @@
 <script>
-
 export default {
   name: 'TheHeader',
+  mounted() {
+    if (screen.width > 540) {
+      this.showLinks = true;
+    }
+  },
   data () {
     return {
       showLinks: false,
