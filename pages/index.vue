@@ -86,8 +86,8 @@ export default {
         >
       </template>
     </ContentParagraph>
-    <div v-for="bullet in bullets" :key="bullet.number" class="bullet-paragraphs">
-      <BulletParagraph
+    <div class="bullet-paragraphs">
+      <BulletParagraph v-for="bullet in bullets" :key="bullet.number"
         :number="bullet.number"
         :title="bullet.title"
         :description="bullet.description"
@@ -103,8 +103,8 @@ export default {
       link="/contact"
     >
       <template #main>
-        <div v-for="icon in iconsWithText" :key="icon.text">
-          <IconWithText
+        <div class="icons">
+          <IconWithText v-for="icon in iconsWithText" :key="icon.text"
             :text="icon.text"
             :icon="icon.iconName"
           />
