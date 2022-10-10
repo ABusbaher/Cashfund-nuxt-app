@@ -25,7 +25,7 @@ export default {
     link: {
       type: String,
       request: true,
-      default: ''
+      default: '/'
     },
     buttonText: {
       type: String,
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 <template>
-  <div>
+  <div class="paragraph-container">
     <div class="paragraph-content">
       <h4>{{ subtitle.toUpperCase() }}</h4>
       <h2>{{ title }}</h2>

@@ -1,5 +1,54 @@
 @use "variables" as variables;
 
+.paragraph-content {
+  & h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: variables.$blue-color;
+    margin: 0;
+  }
+
+  & h2 {
+    font-family: variables.$pt-serif-font;
+    font-style: normal;
+    font-weight: 400;
+    color: variables.$grey-color;
+  }
+
+  & button {
+    padding: 14px 28px;
+    max-width: 199px;
+    height: 46px;
+    margin: 0 0 20px 0;
+  }
+}
+
+.paragraph-content__desc {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  & hr {
+    height: 60px;
+    background-color: variables.$blue-color;
+    margin: 0;
+  }
+
+  & p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: variables.$medium-grey-color;
+    margin: 0 20px 20px 0;
+  }
+}
+
 @media only screen and (max-width: 540px) {
   .paragraph-content {
     padding: 50px 20px 0 20px;
@@ -7,60 +56,28 @@
     & h4 {
       width: 119px;
       height: 17px;
-      font-family: 'Montserrat', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 11px;
-      line-height: 16px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: variables.$blue-color;
       margin: 0;
     }
 
     & h2 {
       max-width: 400px;
       max-height: 200px;
-      font-family: variables.$pt-serif-font;
-      font-style: normal;
-      font-weight: 400;
       font-size: 30px;
       line-height: 38px;
-      color: variables.$grey-color;
       margin: 10px 0 25px 0;
-    }
-
-    & button {
-      padding: 14px 28px;
-      max-width: 199px;
-      height: 46px;
-      margin: 0 0 20px 0;
     }
   }
 
   .paragraph-content__desc {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     padding: 0 0 20px 0;
     gap: 20px;
 
     & hr {
       width: 4px;
-      height: 60px;
-      background-color: variables.$blue-color;
-      margin: 0;
     }
 
     & p {
       max-width: 400px;
-      font-family: variables.$pt-serif-font;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 22px;
-      color: variables.$medium-grey-color;
-      margin: 0 20px 20px 0;
     }
   }
 
@@ -102,5 +119,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .paragraph-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 110px;
+    max-width: 100%;
+    height: 584px;
+  }
+
+  .paragraph-content {
+    padding: 0 0 0 7%;
+    gap: 10px;
+    max-height: 424px;
+    max-width: 490px;
+
+    & h2 {
+      font-size: 42px;
+      line-height: 46px;
+      margin: 20px;
+    }
+  }
+
+  .paragraph-content__desc {
+    padding: 0;
+    gap: 30px;
+
+    & hr {
+      width: 6px;
+    }
+  }
+
+  .paragraph-content__slot-img {
+    height: 400px;
+    max-width: 519px;
+    padding: 0 7% 0 0;
   }
 }

@@ -27,6 +27,11 @@ export default {
       required: false,
       default: 'Read more'
     },
+    link: {
+      type: String,
+      request: true,
+      default: '/'
+    },
     bkgColor: {
       type: String,
       required: false,
@@ -41,6 +46,8 @@ export default {
     <h6>{{ subtitle }}</h6>
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
-    <TheButton :text="buttonText" />
+    <nuxt-link :to="link">
+      <TheButton :text="buttonText" />
+    </nuxt-link>
   </div>
 </template>

@@ -32,12 +32,13 @@ ul {
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1200px) {
   body {
     margin: 0;
     display: flex;
     justify-content: center;
     background-color: variables.$blue-color;
+    max-width: 100%;
   }
 
   .main-container {

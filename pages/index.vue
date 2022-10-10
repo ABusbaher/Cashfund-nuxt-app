@@ -117,6 +117,7 @@ export default {
       description="We have a formidable, coherent, accomplished team, bringing in differentiated domain expertise,
        access, thoughtful deliberation and organization building to the business we create and build."
       bkg-color="#F3F0E9"
+      link="/contact"
     />
   </div>
 </template>
