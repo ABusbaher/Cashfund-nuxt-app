@@ -1,7 +1,7 @@
 @use "variables" as variables;
 
 .paragraph-content {
-  & h4 {
+  & span {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -86,7 +86,7 @@
   .paragraph-content {
     padding: 50px 20px 0 20px;
 
-    & h4 {
+    & span {
       width: 119px;
       height: 17px;
       margin: 0;
@@ -120,7 +120,7 @@
     margin: 20px 0 0 0;
   }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 541px) {
   .paragraph-container {
     display: flex;
     flex-direction: row;

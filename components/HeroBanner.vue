@@ -17,8 +17,8 @@ export default {
 </script>
 <template>
   <div class="hero-banner">
-    <div class="hero-banner__main-img"></div>
-    <div class="hero-banner__bkg-img"></div>
+    <div class="hero-banner__main-img" />
+    <div class="hero-banner__bkg-img" />
     <h1 class="hero-banner__title">
       {{ title }}
     </h1>

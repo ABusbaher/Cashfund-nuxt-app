@@ -1,10 +1,10 @@
 <script>
-import TheButton from "@/components/TheButton.vue";
+import RedirectButton from '@/components/RedirectButton.vue'
 
 export default {
   name: 'SimpleParagraph',
   components: {
-    TheButton,
+    RedirectButton
   },
   props: {
     title: {
@@ -27,7 +27,7 @@ export default {
       required: false,
       default: 'Read more'
     },
-    link: {
+    buttonLink: {
       type: String,
       request: true,
       default: '/'
@@ -43,11 +43,9 @@ export default {
 
 <template>
   <div class="simple-paragraph" :style="{ backgroundColor: bkgColor }">
-    <h6>{{ subtitle }}</h6>
+    <span class="simple-paragraph__subtitle">{{ subtitle }}</span>
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
-    <nuxt-link :to="link">
-      <TheButton :text="buttonText" />
-    </nuxt-link>
+    <RedirectButton :text="buttonText" :link="buttonLink" />
   </div>
 </template>

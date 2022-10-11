@@ -1,13 +1,9 @@
 <script>
 export default {
   name: 'TheHeader',
-  mounted() {
-    if (screen.width > 540) {
-      this.showLinks = true;
-    }
-  },
   data () {
     return {
+      // screenWidthProp: process.client ? window.innerWidth : 0,
       showLinks: false,
       links: [
         {
@@ -24,7 +20,41 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    if (process.client) {
+      if (window.innerWidth > 540) {
+        this.showLinks = true
+      }
+    }
+  },
+  methods: {
+    hideLinksForMobile () {
+      if (process.client) {
+        if (window.innerWidth < 541) {
+          this.showLinks = false
+        }
+      }
+    }
   }
+  // computed: {
+  //   screenWidth() {
+  //     if (process.client) {
+  //       return window.innerWidth;
+  //     }
+  //     return 0;
+  //   }
+  // },
+  // watch: {
+  //   screenWidthProp(newValue, oldValue) {
+  //     if (newValue > 540) {
+  //       this.showLinks = true;
+  //       console.log(this.screenWidthProp);
+  //     }
+  //     this.showLinks = false;
+  //     console.log(oldValue);
+  //   }
+  // }
 }
 </script>
 
@@ -39,7 +69,7 @@ export default {
       </div>
     </div>
     <ul v-show="showLinks" class="nav__menu-links">
-      <li v-for="link in links" :key="link.href" class="nav__menu-links__link">
+      <li v-for="link in links" :key="link.href" class="nav__menu-links__link" @click="hideLinksForMobile()">
         <nuxt-link :to="link.href">
           {{ link.title }}
         </nuxt-link>

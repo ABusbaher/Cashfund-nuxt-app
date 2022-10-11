@@ -1,10 +1,10 @@
 <script>
-import TheButton from '@/components/TheButton.vue'
+import RedirectButton from '@/components/RedirectButton.vue'
 
 export default {
   name: 'ContentParagraph',
   components: {
-    TheButton
+    RedirectButton
   },
   props: {
     subtitle: {
@@ -22,7 +22,7 @@ export default {
       request: false,
       default: ''
     },
-    link: {
+    buttonLink: {
       type: String,
       request: true,
       default: '/'
@@ -38,15 +38,13 @@ export default {
 <template>
   <div class="paragraph-container">
     <div class="paragraph-content">
-      <h4>{{ subtitle.toUpperCase() }}</h4>
+      <span class="paragraph-content__subtitle">{{ subtitle }}</span>
       <h2>{{ title }}</h2>
       <div class="paragraph-content__desc">
         <hr>
         <p>{{ description }}</p>
       </div>
-      <nuxt-link :to="link">
-        <TheButton :text="buttonText" />
-      </nuxt-link>
+      <RedirectButton :text="buttonText" :link="buttonLink"/>
     </div>
     <slot name="main" />
   </div>

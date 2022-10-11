@@ -29,7 +29,7 @@ export default {
 <template>
   <div class="bullet-paragraph" :style="{ 'background-color': bkgColor }">
     <div class="bullet-paragraph__title">
-      <h6>{{ number }}</h6>
+      <span class="bullet-paragraph__title__number">{{ number }}</span>
       <h3>{{ title }}</h3>
     </div>
     <p>{{ description }}</p>

@@ -22,7 +22,7 @@
   margin: 0;
   height: 63px;
 
-  & h6 {
+  & span {
     width: 67px;
     height: 63px;
     font-family: variables.$pt-serif-font;
@@ -63,7 +63,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 541px) {
   .bullet-paragraphs {
     display: flex;
     flex-direction: row;

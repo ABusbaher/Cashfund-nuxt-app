@@ -1,9 +1,9 @@
 <script>
-import HeroBanner from '@/components/HeroBanner.vue';
-import ContentParagraph from '@/components/ContentParagraph.vue';
-import BulletParagraph from '@/components/BulletParagraph.vue';
-import IconWithText from '@/components/IconWithText.vue';
-import SimpleParagraph from '@/components/SimpleParagraph.vue';
+import HeroBanner from '@/components/HeroBanner.vue'
+import ContentParagraph from '@/components/ContentParagraph.vue'
+import BulletParagraph from '@/components/BulletParagraph.vue'
+import IconWithText from '@/components/IconWithText.vue'
+import SimpleParagraph from '@/components/SimpleParagraph.vue'
 
 export default {
   name: 'IndexPage',
@@ -12,7 +12,7 @@ export default {
     ContentParagraph,
     BulletParagraph,
     IconWithText,
-    SimpleParagraph,
+    SimpleParagraph
   },
   data () {
     return {
@@ -76,7 +76,7 @@ export default {
       building business, & Merger and Acquisition, it will aim at developing itself as a strong global player,
       by building a proven track record and achieving significant milestones in the next 5 years."
       button-text="more about us"
-      link="/about"
+      button-link="/about"
     >
       <template #main>
         <img
@@ -87,7 +87,9 @@ export default {
       </template>
     </ContentParagraph>
     <div class="bullet-paragraphs">
-      <BulletParagraph v-for="bullet in bullets" :key="bullet.number"
+      <BulletParagraph
+        v-for="bullet in bullets"
+        :key="bullet.number"
         :number="bullet.number"
         :title="bullet.title"
         :description="bullet.description"
@@ -100,11 +102,13 @@ export default {
       description="We will identify, conceive and build business that will create substantial
       long-term value for our investing community"
       button-text="Read more"
-      link="/contact"
+      button-link="/contact"
     >
       <template #main>
         <div class="icons">
-          <IconWithText v-for="icon in iconsWithText" :key="icon.text"
+          <IconWithText
+            v-for="icon in iconsWithText"
+            :key="icon.text"
             :text="icon.text"
             :icon="icon.iconName"
           />
@@ -117,7 +121,7 @@ export default {
       description="We have a formidable, coherent, accomplished team, bringing in differentiated domain expertise,
        access, thoughtful deliberation and organization building to the business we create and build."
       bkg-color="#F3F0E9"
-      link="/contact"
+      button-link="/contact"
     />
   </div>
 </template>

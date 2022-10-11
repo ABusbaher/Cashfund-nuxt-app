@@ -16,13 +16,20 @@ export default {
       type: String,
       request: false,
       default: '#FFFFFF'
+    },
+    link: {
+      type: String,
+      request: true,
+      default: '/'
     }
   }
 }
 </script>
 
 <template>
-  <button :style="{ 'background-color': bkgColor, 'color': textColor }">
-    {{ text.toUpperCase() }}
-  </button>
+  <nuxt-link :to="link">
+    <button :style="{ 'background-color': bkgColor, 'color': textColor }">
+      {{ text }}
+    </button>
+  </nuxt-link>
 </template>
