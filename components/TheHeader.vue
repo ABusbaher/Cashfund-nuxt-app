@@ -3,7 +3,7 @@ export default {
   name: 'TheHeader',
   data () {
     return {
-      // screenWidthProp: process.client ? window.innerWidth : 0,
+      screenWidth: process.client ? window.innerWidth : 0,
       showLinks: false,
       links: [
         {
@@ -22,39 +22,35 @@ export default {
     }
   },
   mounted () {
-    if (process.client) {
-      if (window.innerWidth > 540) {
-        this.showLinks = true
-      }
+    if (this.screenWidth > 1024) {
+      this.showLinks = true;
     }
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
   },
   methods: {
     hideLinksForMobile () {
-      if (process.client) {
-        if (window.innerWidth < 541) {
-          this.showLinks = false
-        }
+      if (this.screenWidth < 1025) {
+          return this.showLinks = false;
       }
+      return this.showLinks = true;
+    },
+    onResize() {
+      this.screenWidth = window.innerWidth;
+    }
+  },
+  watch: {
+    screenWidth(newValue) {
+      if (newValue > 1024) {
+        return this.showLinks = true;
+      }
+      return this.showLinks = false;
     }
   }
-  // computed: {
-  //   screenWidth() {
-  //     if (process.client) {
-  //       return window.innerWidth;
-  //     }
-  //     return 0;
-  //   }
-  // },
-  // watch: {
-  //   screenWidthProp(newValue, oldValue) {
-  //     if (newValue > 540) {
-  //       this.showLinks = true;
-  //       console.log(this.screenWidthProp);
-  //     }
-  //     this.showLinks = false;
-  //     console.log(oldValue);
-  //   }
-  // }
 }
 </script>
 

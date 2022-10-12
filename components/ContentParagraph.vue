@@ -38,13 +38,14 @@ export default {
 <template>
   <div class="paragraph-container">
     <div class="paragraph-content">
-      <span class="paragraph-content__subtitle">{{ subtitle }}</span>
+      <span class="paragraph-content__subtitle">
+        {{ subtitle }}
+      </span>
       <h2>{{ title }}</h2>
-      <div class="paragraph-content__desc">
-        <hr>
-        <p>{{ description }}</p>
-      </div>
-      <RedirectButton :text="buttonText" :link="buttonLink"/>
+      <p class="paragraph-content__desc">
+        {{ description }}
+      </p>
+      <RedirectButton :text="buttonText" :link="buttonLink" />
     </div>
     <slot name="main" />
   </div>

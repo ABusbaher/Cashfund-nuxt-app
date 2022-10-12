@@ -41,7 +41,7 @@ export default {
     </div>
     <div class="footer-bottom">
       <p>Copyright © 2021 Cashfund PLC</p>
-      <p>Powered by <strong><em><u>Vega IT</u></em></strong></p>
+      <p>Powered by <strong><em><ins>Vega IT</ins></em></strong></p>
     </div>
   </div>
 </template>

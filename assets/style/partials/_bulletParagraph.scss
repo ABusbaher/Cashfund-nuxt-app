@@ -63,7 +63,27 @@
   }
 }
 
-@media only screen and (min-width: 541px) {
+@media only screen and (min-width: 541px) and (max-width: 1024px) {
+  .bullet-paragraph {
+    padding: 50px 100px;
+
+    & p {
+      height: 60px;
+      max-width: 800px;
+    }
+  }
+
+  .bullet-paragraph__title {
+    max-width: 800px;
+
+    & h3 {
+      font-size: 28px;
+      line-height: 32.2px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) {
   .bullet-paragraphs {
     display: flex;
     flex-direction: row;

@@ -26,14 +26,14 @@ ul {
   }
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 1024px) {
   body {
     max-width: 100%;
     margin: 0;
   }
 }
 
-@media only screen and (min-width: 541px) {
+@media only screen and (min-width: 1025px) {
   body {
     margin: 0;
     display: flex;

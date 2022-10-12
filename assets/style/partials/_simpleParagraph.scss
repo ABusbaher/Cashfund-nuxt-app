@@ -67,7 +67,26 @@
   }
 }
 
-@media only screen and (min-width: 541px) {
+@media only screen and (min-width: 541px) and (max-width: 1024px) {
+  .simple-paragraph {
+    padding: 50px;
+    gap: 30px;
+    max-width: 100%;
+    margin: 0;
+
+    & h3 {
+      font-size: 38px;
+      line-height: 42px;
+    }
+
+    & p {
+      font-size: 16px;
+      line-height: 30px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) {
   .simple-paragraph {
     padding: 50px 20px;
     gap: 10px;

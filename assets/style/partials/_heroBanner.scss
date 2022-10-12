@@ -6,22 +6,20 @@
   max-width: 100%;
 }
 
-.hero-banner__bkg-img {
-  opacity: 0.8;
+.hero-banner__images {
+  position: absolute;
+  background: url('assets/images/V_redraw-without-bg-1_9.png') no-repeat center center/cover,
+    url('assets/images/pexels-pixabay-372470_big.jpg') no-repeat center center/cover;
   width: 100%;
   height: 100%;
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
 }
 
-.hero-banner__main-img {
+.hero-banner__images::after {
   position: absolute;
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
-  width: 100%;
-  height: 100%;
+  content: "";
+  background: variables.$blue-color;
+  mix-blend-mode: multiply;
+  z-index: 1;
 }
 
 .hero-banner__title {
@@ -42,24 +40,21 @@
   z-index: 2;
 }
 
-.rectangle-4 {
-  position: absolute;
-  background: variables.$blue-color;
-  mix-blend-mode: multiply;
-  z-index: 1;
-}
-
 @media only screen and (max-width: 540px) {
   .hero-banner {
     height: 700px;
   }
 
-  .hero-banner__bkg-img {
-    background-image: url('assets/images/V_redraw-without-bg-1_9.png');
+  .hero-banner__images {
+    background-image: url("assets/images/V_redraw-without-bg-1_9.png"), url("assets/images/pexels-pixabay-372470_1.png");
   }
 
-  .hero-banner__main-img {
-    background-image: url('assets/images/pexels-pixabay-372470_1.png');
+  .hero-banner__images::after {
+    width: 430px;
+    height: 770px;
+    left: 33%;
+    top: -25px;
+    transform: rotate(-6deg);
   }
 
   .hero-banner__title {
@@ -79,36 +74,61 @@
     font-size: 20px;
     line-height: 30px;
   }
+}
 
-  .rectangle-4 {
-    width: 430px;
-    height: 770px;
-    left: 33%;
-    top: -25px;
-    transform: rotate(-6deg);
+@media only screen and (min-width: 541px) and (max-width: 1024px) {
+
+  .hero-banner {
+    height: 661px;
+  }
+
+  .hero-banner__images::after {
+    width: 850px;
+    height: 800px;
+    left: 38%;
+    top: -75px;
+    transform: rotate(-9deg);
+  }
+
+  .hero-banner__title {
+    max-width: 440px;
+    height: 150px;
+    left: 300px;
+    top: 270px;
+    font-size: 44px;
+    line-height: 54px;
+  }
+
+  .hero-banner__desc {
+    max-width: 440px;
+    height: 59px;
+    left: 300px;
+    top: 520px;
+    font-size: 24px;
+    line-height: 34px;
   }
 }
 
-@media only screen and (min-width: 541px) {
+@media only screen and (min-width: 1025px) {
   .hero-banner {
     height: 670px;
   }
 
-  .hero-banner__bkg-img {
-    background-image: url('assets/images/V_redraw-without-bg-1_9.png');
-  }
-
-  .hero-banner__main-img {
-    background-image: url('assets/images/pexels-pixabay-372470_big.jpg');
+  .hero-banner__images::after {
+    width: 1030px;
+    height: 970px;
+    left: 37%;
+    top: -200px;
+    transform: rotate(-15deg);
   }
 
   .hero-banner__title {
     max-width: 660px;
-    height: 146px;
+    height: 130px;
     left: 600px;
     top: 230px;
-    font-size: 56px;
-    line-height: 74px;
+    font-size: 50px;
+    line-height: 68px;
   }
 
   .hero-banner__desc {
@@ -116,17 +136,8 @@
     height: 59px;
     left: 600px;
     top: 455px;
-    font-size: 34px;
-    line-height: 59px;
-  }
-
-
-  .rectangle-4 {
-    width: 1030px;
-    height: 970px;
-    left: 37%;
-    top: -200px;
-    transform: rotate(-15deg);
+    font-size: 32px;
+    line-height: 55px;
   }
 }
 
