@@ -4,12 +4,11 @@ export default {
   props: {
     title: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     },
     description: {
       type: String,
-      request: false,
+      required: false,
       default: ''
     }
   }

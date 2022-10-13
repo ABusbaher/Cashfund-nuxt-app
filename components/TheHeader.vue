@@ -21,34 +21,36 @@ export default {
       ]
     }
   },
+  watch: {
+    screenWidth (newValue) {
+      if (newValue > 1024) {
+        this.showLinks = true
+        return
+      }
+      this.showLinks = false
+    }
+  },
   mounted () {
     if (this.screenWidth > 1024) {
-      this.showLinks = true;
+      this.showLinks = true
     }
     this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
+      window.addEventListener('resize', this.onResize)
     })
   },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize)
   },
   methods: {
     hideLinksForMobile () {
       if (this.screenWidth < 1025) {
-          return this.showLinks = false;
+        this.showLinks = false
+        return
       }
-      return this.showLinks = true;
+      this.showLinks = true
     },
-    onResize() {
-      this.screenWidth = window.innerWidth;
-    }
-  },
-  watch: {
-    screenWidth(newValue) {
-      if (newValue > 1024) {
-        return this.showLinks = true;
-      }
-      return this.showLinks = false;
+    onResize () {
+      this.screenWidth = window.innerWidth
     }
   }
 }

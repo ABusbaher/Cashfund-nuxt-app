@@ -107,6 +107,8 @@
     width: 100%;
     height: 300px;
     margin: 20px 0 0 0;
+    object-fit: cover;
+    object-position: top;
   }
 }
 @media only screen and (min-width: 541px) and (max-width: 1024px) {
@@ -136,6 +138,7 @@
 
   .paragraph-content__slot-img {
     width: 80%;
+    object-fit: contain;
     max-height: 400px;
     margin: 20px 0 0 0;
   }

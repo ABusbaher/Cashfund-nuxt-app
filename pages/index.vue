@@ -1,9 +1,9 @@
 <script>
-import HeroBanner from '@/components/HeroBanner.vue'
-import ContentParagraph from '@/components/ContentParagraph.vue'
-import BulletParagraph from '@/components/BulletParagraph.vue'
-import IconWithText from '@/components/IconWithText.vue'
-import SimpleParagraph from '@/components/SimpleParagraph.vue'
+import HeroBanner from '@/components/HeroBanner.vue';
+import ContentParagraph from '@/components/ContentParagraph.vue';
+import BulletParagraph from '@/components/BulletParagraph.vue';
+import IconWithText from '@/components/IconWithText.vue';
+import SimpleParagraph from '@/components/SimpleParagraph.vue';
 
 export default {
   name: 'IndexPage',
@@ -78,7 +78,7 @@ export default {
       button-text="more about us"
       button-link="/about"
     >
-      <template #main>
+      <template #aside>
         <img
           class="paragraph-content__slot-img"
           :src="require('@/assets/images/photo-1519085360753-af0119f7cbe7_1.jpg')"
@@ -104,7 +104,7 @@ export default {
       button-text="Read more"
       button-link="/contact"
     >
-      <template #main>
+      <template #aside>
         <div class="icons">
           <IconWithText
             v-for="icon in iconsWithText"

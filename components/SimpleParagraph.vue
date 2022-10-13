@@ -9,8 +9,7 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
-      default: ''
+      required: true
     },
     subtitle: {
       type: String,
@@ -29,8 +28,7 @@ export default {
     },
     buttonLink: {
       type: String,
-      request: true,
-      default: '/'
+      required: true
     },
     bkgColor: {
       type: String,

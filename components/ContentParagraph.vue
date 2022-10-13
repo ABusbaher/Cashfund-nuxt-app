@@ -9,28 +9,24 @@ export default {
   props: {
     subtitle: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     },
     title: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     },
     description: {
       type: String,
-      request: false,
+      required: false,
       default: ''
     },
     buttonLink: {
       type: String,
-      request: true,
-      default: '/'
+      required: true
     },
     buttonText: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     }
   }
 }
@@ -47,6 +43,6 @@ export default {
       </p>
       <RedirectButton :text="buttonText" :link="buttonLink" />
     </div>
-    <slot name="main" />
+    <slot name="aside" />
   </div>
 </template>

@@ -4,23 +4,21 @@ export default {
   props: {
     text: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     },
     bkgColor: {
       type: String,
-      request: false,
+      required: false,
       default: '#009CC4'
     },
     textColor: {
       type: String,
-      request: false,
+      required: false,
       default: '#FFFFFF'
     },
     link: {
       type: String,
-      request: true,
-      default: '/'
+      required: true
     }
   }
 }

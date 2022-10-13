@@ -4,22 +4,19 @@ export default {
   props: {
     number: {
       type: String,
-      request: true,
-      default: '01'
+      required: true
     },
     title: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     },
     description: {
       type: String,
-      request: true,
-      default: ''
+      required: true
     },
     bkgColor: {
       type: String,
-      request: false,
+      required: false,
       default: 'white'
     }
   }
