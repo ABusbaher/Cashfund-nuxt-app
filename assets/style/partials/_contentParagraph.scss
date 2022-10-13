@@ -1,28 +1,28 @@
 @use "variables" as variables;
 
 .paragraph-content {
-  & span {
-    font-family: 'Montserrat', sans-serif;
+  span {
+    font-family: variables.$font-secondary;
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: variables.$blue-color;
+    color: variables.$span-primary;
     margin: 0;
     width: 119px;
     height: 17px;
   }
 
-  & h2 {
-    font-family: variables.$pt-serif-font;
+  h2 {
+    font-family: variables.$font-primary;
     font-style: normal;
     font-weight: 400;
-    color: variables.$grey-color;
+    color: variables.$text-primary;
   }
 
-  & button {
+  button {
     padding: 14px 28px;
     max-width: 199px;
     height: 46px;
@@ -35,7 +35,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
-    color: variables.$medium-grey-color;
+    color: variables.$text-secondary;
     margin: 0 20px 20px 30px;
     position: relative;
 }
@@ -59,15 +59,15 @@
   max-width: 450px;
   height: 80px;
 
-  & p {
+  p {
     max-width: 230px;
     max-height: 52px;
-    font-family: variables.$pt-serif-font;
+    font-family: variables.$font-primary;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 26px;
-    color: variables.$grey-color;
+    color: variables.$text-primary;
   }
 }
 
@@ -78,7 +78,7 @@
   right: 1.56%;
   top: 3.12%;
   bottom: 3.12%;
-  background: variables.$blue-color;
+  background: variables.$bkg-primary;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,7 +88,7 @@
   .paragraph-content {
     padding: 50px 20px 0 20px;
 
-    & h2 {
+    h2 {
       max-width: 400px;
       max-height: 200px;
       font-size: 30px;
@@ -121,7 +121,7 @@
 
   .paragraph-content {
     padding: 0 3%;
-    & h2 {
+    h2 {
       max-width: 600px;
       max-height: 300px;
       font-size: 38px;
@@ -166,7 +166,7 @@
     max-height: 424px;
     max-width: 490px;
 
-    & h2 {
+    h2 {
       font-size: 40px;
       line-height: 44px;
       margin: 20px;

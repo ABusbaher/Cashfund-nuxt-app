@@ -1,15 +1,15 @@
 @use "variables" as variables;
 
 .bullet-paragraph {
-  & p {
+  p {
     height: 112px;
-    font-family: variables.$pt-serif-font;
+    font-family: variables.$font-primary;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
     margin: 20px 0 0 0;
-    color: variables.$medium-grey-color;
+    color: variables.$text-secondary;
   }
 }
 
@@ -22,25 +22,25 @@
   margin: 0;
   height: 63px;
 
-  & span {
+  span {
     width: 67px;
     height: 63px;
-    font-family: variables.$pt-serif-font;
+    font-family: variables.$font-primary;
     font-style: normal;
     font-weight: 400;
     font-size: 62px;
     line-height: 63px;
     text-align: center;
-    color: variables.$blue-color;
+    color: variables.$span-primary;
   }
 
-  & h3 {
+  h3 {
     max-width: 248px;
     min-height: 28px;
-    font-family: variables.$grey-color;
+    font-family: variables.$font-primary;
     font-style: normal;
     font-weight: 400;
-    color: variables.$grey-color;
+    color: variables.$text-primary;
   }
 }
 
@@ -48,7 +48,7 @@
   .bullet-paragraph {
     padding: 50px 20px;
 
-    & p {
+    p {
       max-width: 450px;
     }
   }
@@ -56,7 +56,7 @@
   .bullet-paragraph__title {
     max-width: 440px;
 
-    & h3 {
+    h3 {
       font-size: 22px;
       line-height: 28px;
     }
@@ -67,7 +67,7 @@
   .bullet-paragraph {
     padding: 50px 100px;
 
-    & p {
+    p {
       height: 60px;
       max-width: 800px;
     }
@@ -76,7 +76,7 @@
   .bullet-paragraph__title {
     max-width: 800px;
 
-    & h3 {
+    h3 {
       font-size: 28px;
       line-height: 32.2px;
     }
@@ -98,7 +98,7 @@
     padding: 80px 60px 0;
     gap: 10px;
 
-    & p {
+    p {
       max-width: 350px;
     }
   }
@@ -106,7 +106,7 @@
   .bullet-paragraph__title {
     max-width: 360px;
 
-    & h3 {
+    h3 {
       font-size: 25px;
       line-height: 30px;
     }

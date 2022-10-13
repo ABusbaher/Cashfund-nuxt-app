@@ -3,21 +3,16 @@
 .hero-banner {
   position: relative;
   overflow: hidden;
-  max-width: 100%;
-}
-
-.hero-banner__images {
-  position: absolute;
   background: url('assets/images/V_redraw-without-bg-1_9.png') no-repeat center center/cover,
-    url('assets/images/pexels-pixabay-372470_big.jpg') no-repeat center center/cover;
+  url('assets/images/pexels-pixabay-372470_big.jpg') no-repeat center center/cover;
   width: 100%;
   height: 100%;
 }
 
-.hero-banner__images::after {
+.hero-banner::after {
   position: absolute;
   content: "";
-  background: variables.$blue-color;
+  background: variables.$bkg-primary;
   mix-blend-mode: multiply;
   z-index: 1;
 }
@@ -26,7 +21,7 @@
   position: absolute;
   font-style: normal;
   font-weight: 400;
-  color: variables.$white-color;
+  color: variables.$text-tertiary;
   margin: 0;
   z-index: 2;
 }
@@ -35,7 +30,7 @@
   position: absolute;
   font-style: normal;
   font-weight: 400;
-  color: variables.$white-color;
+  color: variables.$text-tertiary;
   margin: 0;
   z-index: 2;
 }
@@ -43,13 +38,10 @@
 @media only screen and (max-width: 540px) {
   .hero-banner {
     height: 700px;
-  }
-
-  .hero-banner__images {
     background-image: url("assets/images/V_redraw-without-bg-1_9.png"), url("assets/images/pexels-pixabay-372470_1.png");
   }
 
-  .hero-banner__images::after {
+  .hero-banner::after {
     width: 430px;
     height: 770px;
     left: 33%;
@@ -82,7 +74,7 @@
     height: 661px;
   }
 
-  .hero-banner__images::after {
+  .hero-banner::after {
     width: 850px;
     height: 800px;
     left: 38%;
@@ -114,7 +106,7 @@
     height: 670px;
   }
 
-  .hero-banner__images::after {
+  .hero-banner::after {
     width: 1030px;
     height: 970px;
     left: 37%;

@@ -8,8 +8,8 @@
 
 body {
   position: relative;
-  background: variables.$white-color;
-  font-family: variables.$pt-serif-font;
+  background: variables.$bkg-secondary;
+  font-family: variables.$font-primary;
 }
 
 button {
@@ -21,7 +21,7 @@ button {
 ul {
   list-style-type: none;
 
-  & li a {
+  li a {
     text-decoration: none;
   }
 }
@@ -38,12 +38,12 @@ ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    background-color: variables.$blue-color;
+    background-color: variables.$bkg-primary;
     max-width: 100%;
   }
 
   .main-container {
     max-width: 1440px;
-    background-color: variables.$white-color;
+    background-color: variables.$bkg-secondary;
   }
 }

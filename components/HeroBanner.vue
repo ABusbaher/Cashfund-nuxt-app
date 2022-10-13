@@ -16,7 +16,6 @@ export default {
 </script>
 <template>
   <div class="hero-banner">
-    <div class="hero-banner__images" />
     <h1 class="hero-banner__title">
       {{ title }}
     </h1>

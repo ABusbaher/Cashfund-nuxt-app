@@ -5,11 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: variables.$grey-color;
-  color: variables.$white-color;
+  background: variables.$bkg-tertiary;
+  color: variables.$text-tertiary;
   text-transform: uppercase;
 
-  & h4 {
+  h4 {
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -18,7 +18,7 @@
     margin: 0;
   }
 
-  & p {
+  p {
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -32,17 +32,17 @@
   padding: 0;
   margin: 0;
 
-  & li {
+  li {
     margin: 10px 0;
     text-align: center;
 
-    & a {
+    a {
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
       line-height: 16px;
       font-feature-settings: 'case' on;
-      color: variables.$white-color;
+      color: variables.$link-primary;
     }
   }
 }
@@ -57,7 +57,7 @@
     line-height: 16px;
     text-transform: capitalize;
     font-feature-settings: 'case' on;
-    color: variables.$white-color;
+    color: variables.$text-tertiary;
   }
 }
 
@@ -91,7 +91,7 @@
     gap: 20px;
 
 
-    & img {
+    img {
       margin: 10px auto;
       display: block;
       height: 46.66px;
@@ -124,7 +124,7 @@
     padding: 50px 20px;
     height: 200px;
 
-    & p {
+    p {
       padding: 30px 0 0 0;
     }
   }

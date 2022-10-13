@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
 
-  & span {
+  span {
     width: 76px;
     height: 17px;
     font-family: 'Montserrat', sans-serif;
@@ -16,27 +16,27 @@
     text-align: center;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: variables.$blue-color;
+    color: variables.$span-primary;
     margin: 0;
   }
 
-  & h3 {
+  h3 {
     font-style: normal;
     font-weight: 400;
     text-align: center;
-    color: variables.$grey-color;
+    color: variables.$text-primary;
     margin: 0;
   }
 
-  & p {
+  p {
     font-style: normal;
     font-weight: 400;
     text-align: center;
-    color: variables.$medium-grey-color;
+    color: variables.$text-secondary;
     margin: 0;
   }
 
-  & button {
+  button {
     padding: 14px 28px;
     width: 158px;
     height: 46px;
@@ -51,14 +51,14 @@
     height: 405px;
     margin: 20px 0 0 0;
 
-    & h3 {
+    h3 {
       max-width: 460px;
       height: 152px;
       font-size: 30px;
       line-height: 38px;
     }
 
-    & p {
+    p {
       max-width: 460px;
       height: 160px;
       font-size: 16px;
@@ -74,12 +74,12 @@
     max-width: 100%;
     margin: 0;
 
-    & h3 {
+    h3 {
       font-size: 38px;
       line-height: 42px;
     }
 
-    & p {
+    p {
       font-size: 16px;
       line-height: 30px;
     }
@@ -94,14 +94,14 @@
     height: 360px;
     margin: 20px 0 0 0;
 
-    & h3 {
+    h3 {
       max-width: 1030px;
       height: 152px;
       font-size: 44px;
       line-height: 50px;
     }
 
-    & p {
+    p {
       max-width: 1030px;
       height: 90px;
       font-size: 18px;

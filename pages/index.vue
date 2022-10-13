@@ -1,9 +1,9 @@
 <script>
-import HeroBanner from '@/components/HeroBanner.vue';
-import ContentParagraph from '@/components/ContentParagraph.vue';
-import BulletParagraph from '@/components/BulletParagraph.vue';
-import IconWithText from '@/components/IconWithText.vue';
-import SimpleParagraph from '@/components/SimpleParagraph.vue';
+import HeroBanner from '@/components/HeroBanner.vue'
+import ContentParagraph from '@/components/ContentParagraph.vue'
+import BulletParagraph from '@/components/BulletParagraph.vue'
+import IconWithText from '@/components/IconWithText.vue'
+import SimpleParagraph from '@/components/SimpleParagraph.vue'
 
 export default {
   name: 'IndexPage',
