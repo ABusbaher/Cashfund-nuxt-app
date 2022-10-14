@@ -36,7 +36,7 @@ export default {
           </li>
         </ul>
       </div>
-      <h4>Our offices</h4>
+      <h3>Our offices</h3>
       <p>singapure | australia | mumbai</p>
     </div>
     <div class="footer-bottom">

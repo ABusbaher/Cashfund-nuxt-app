@@ -1,50 +1,45 @@
 @use "variables" as variables;
+@import "mixins";
 
 .bullet-paragraph {
   p {
     height: 112px;
+    @include pStyle(variables.$text-secondary);
+    text-align: left;
     font-family: variables.$font-primary;
-    font-style: normal;
-    font-weight: 400;
     font-size: 14px;
     line-height: 22px;
     margin: 20px 0 0 0;
-    color: variables.$text-secondary;
   }
 }
 
 .bullet-paragraph__title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  @include flexContainer(row, left, center);
   padding: 0;
   gap: 20px;
   margin: 0;
   height: 63px;
 
   span {
+    @include spanStyle();
     width: 67px;
     height: 63px;
     font-family: variables.$font-primary;
-    font-style: normal;
     font-weight: 400;
     font-size: 62px;
     line-height: 63px;
-    text-align: center;
-    color: variables.$span-primary;
   }
 
   h3 {
-    max-width: 248px;
+    max-width: 448px;
     min-height: 28px;
+    @include hStyle(variables.$text-primary);
+    text-align: left;
     font-family: variables.$font-primary;
-    font-style: normal;
-    font-weight: 400;
-    color: variables.$text-primary;
   }
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: variables.$mobile-width) {
   .bullet-paragraph {
     padding: 50px 20px;
 
@@ -63,7 +58,7 @@
   }
 }
 
-@media only screen and (min-width: 541px) and (max-width: 1024px) {
+@media only screen and (min-width: variables.$mobile-width + 1px) and (max-width: variables.$desktop-width - 1px) {
   .bullet-paragraph {
     padding: 50px 100px;
 
@@ -83,11 +78,9 @@
   }
 }
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: variables.$desktop-width) {
   .bullet-paragraphs {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    @include flexContainer(row, left, flex-start);
     padding: 0;
     max-width: 100%;
     height: 350px;

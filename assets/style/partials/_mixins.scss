@@ -1,0 +1,33 @@
+@use "variables" as variables;
+
+@mixin spanStyle() {
+  font-style: normal;
+  text-align: center;
+  color: variables.$span-primary;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+@mixin flexContainer($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin hStyle($color) {
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  color: $color;
+  margin: 0;
+}
+
+@mixin pStyle($color) {
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  color: $color;
+  margin: 0;
+}
+
