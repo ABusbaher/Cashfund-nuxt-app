@@ -1,4 +1,5 @@
 @use "partials/variables" as variables;
+@import "node_modules/reset-css/sass/reset";
 @import "partials/heroBanner";
 @import "partials/header";
 @import "partials/contentParagraph";

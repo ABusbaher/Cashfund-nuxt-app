@@ -1,6 +1,7 @@
 {
   "extends": [
-    "@nuxtjs"
+    "@nuxtjs",
+    "eslint:recommended"
   ],
   "env": {
     "jest": true

@@ -23,7 +23,7 @@ export default {
   },
   watch: {
     screenWidth (newValue) {
-      if (newValue > 1024) {
+      if (newValue >= 1024) {
         this.showLinks = true
         return
       }
@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted () {
-    if (this.screenWidth > 1024) {
+    if (this.screenWidth >= 1024) {
       this.showLinks = true
     }
     this.$nextTick(() => {
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     hideLinksForMobile () {
-      if (this.screenWidth < 1025) {
+      if (this.screenWidth < 1024) {
         this.showLinks = false
         return
       }
