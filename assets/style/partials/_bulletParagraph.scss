@@ -1,10 +1,12 @@
 @use "variables" as variables;
+@use "extends";
 @import "mixins";
 
 .bullet-paragraph {
   p {
+    @extend .p;
     height: 112px;
-    @include pStyle(variables.$text-secondary);
+    color: variables.$text-secondary;
     text-align: left;
     font-family: variables.$font-primary;
     font-size: 14px;
@@ -21,7 +23,7 @@
   height: 63px;
 
   span {
-    @include spanStyle();
+    @extend .span;
     width: 67px;
     height: 63px;
     font-family: variables.$font-primary;
@@ -31,15 +33,16 @@
   }
 
   h3 {
+    @extend .h;
     max-width: 448px;
     min-height: 28px;
-    @include hStyle(variables.$text-primary);
+    color: variables.$text-primary;
     text-align: left;
     font-family: variables.$font-primary;
   }
 }
 
-@media only screen and (max-width: variables.$mobile-width) {
+@include for_breakpoint(mobile) {
   .bullet-paragraph {
     padding: 50px 20px;
 
@@ -58,7 +61,7 @@
   }
 }
 
-@media only screen and (min-width: variables.$mobile-width + 1px) and (max-width: variables.$desktop-width - 1px) {
+@include for_breakpoint(tablet) {
   .bullet-paragraph {
     padding: 50px 100px;
 
@@ -78,7 +81,7 @@
   }
 }
 
-@media only screen and (min-width: variables.$desktop-width) {
+@include for_breakpoint(desktop) {
   .bullet-paragraphs {
     @include flexContainer(row, left, flex-start);
     padding: 0;

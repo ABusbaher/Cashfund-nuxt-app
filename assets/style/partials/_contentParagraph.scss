@@ -1,9 +1,10 @@
 @use "variables" as variables;
+@use "extends";
 @import "mixins";
 
 .paragraph-content {
   span {
-    @include spanStyle();
+    @extend .span;
     height: 17px;
     font-family: variables.$font-secondary;
     font-weight: 500;
@@ -14,7 +15,8 @@
   }
 
   h2 {
-    @include hStyle(variables.$text-primary);
+    @extend .h;
+    color: variables.$text-primary;
     text-align: left;
     font-family: variables.$font-primary;
   }
@@ -28,7 +30,8 @@
 }
 
 .paragraph-content__desc {
-  @include pStyle(variables.$text-secondary);
+  @extend .p;
+  color: variables.$text-secondary;
   font-size: 14px;
   line-height: 22px;
   margin: 0 20px 20px 30px;
@@ -54,7 +57,8 @@
   height: 80px;
 
   p {
-    @include pStyle(variables.$text-primary);
+    @extend .p;
+    color: variables.$text-primary;
     max-width: 230px;
     max-height: 52px;
     text-align: left;
@@ -75,7 +79,7 @@
   background: variables.$bkg-primary;
 }
 
-@media only screen and (max-width: variables.$mobile-width) {
+@include for_breakpoint(mobile) {
   .paragraph-content {
     padding: 50px 20px 0 20px;
 
@@ -102,7 +106,8 @@
     object-position: top;
   }
 }
-@media only screen and (min-width: variables.$mobile-width + 1px) and (max-width: variables.$desktop-width - 1px) {
+
+@include for_breakpoint(tablet) {
   .paragraph-container {
     @include flexContainer(column, center, center);
     margin: 7%;
@@ -139,7 +144,7 @@
   }
 }
 
-@media only screen and (min-width: variables.$desktop-width) {
+@include for_breakpoint(desktop) {
   .paragraph-container {
     @include flexContainer(row, space-between, center);
     max-width: 100%;

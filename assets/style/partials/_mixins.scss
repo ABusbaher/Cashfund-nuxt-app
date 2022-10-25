@@ -1,13 +1,5 @@
 @use "variables" as variables;
 
-@mixin spanStyle() {
-  font-style: normal;
-  text-align: center;
-  color: variables.$span-primary;
-  text-transform: uppercase;
-  margin: 0;
-}
-
 @mixin flexContainer($direction, $justify, $align) {
   display: flex;
   flex-direction: $direction;
@@ -15,19 +7,24 @@
   align-items: $align;
 }
 
-@mixin hStyle($color) {
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  color: $color;
-  margin: 0;
-}
+$media_queries : (
+  'mobile'    : unquote("only screen and (max-width: 540px)"),
+  'tablet'    : unquote("only screen and (min-width: 541px) and (max-width: 1023px)"),
+  'desktop'   : unquote("only screen and (min-width: 1024px)")
+);
 
-@mixin pStyle($color) {
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  color: $color;
-  margin: 0;
-}
+@mixin for_breakpoint($breakpoints) {
+  $conditions : ();
+  @each $breakpoint in $breakpoints {
+    $conditions: append(
+        $conditions,
+        #{inspect(map-get($media_queries, $breakpoint))},
+        comma
+    );
+  }
 
+  @media #{$conditions} {
+    @content;
+  }
+
+}

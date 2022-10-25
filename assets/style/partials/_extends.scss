@@ -1,0 +1,23 @@
+@use "variables" as variables;
+
+.h {
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+}
+
+.p {
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+}
+
+.span {
+  font-style: normal;
+  text-align: center;
+  color: variables.$span-primary;
+  text-transform: uppercase;
+  margin: 0;
+}

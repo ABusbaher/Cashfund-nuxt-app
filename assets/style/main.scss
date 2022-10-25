@@ -27,14 +27,14 @@ ul {
   }
 }
 
-@media only screen and (max-width: variables.$desktop-width - 1px) {
+@include for_breakpoint(mobile tablet) {
   body {
     max-width: 100%;
     margin: 0;
   }
 }
 
-@media only screen and (min-width: variables.$desktop-width) {
+@include for_breakpoint(desktop) {
   body {
     margin: 0;
     @include flexContainer(row, center, center);

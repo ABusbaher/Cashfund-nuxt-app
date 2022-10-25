@@ -1,4 +1,5 @@
 @use "variables" as variables;
+@use "extends";
 @import "mixins";
 
 .hero-banner {
@@ -19,18 +20,20 @@
 }
 
 .hero-banner__title {
-  @include hStyle(variables.$text-tertiary);
+  @extend .h;
+  color: variables.$text-tertiary;
   position: absolute;
   z-index: 2;
 }
 
 .hero-banner__desc {
-  @include pStyle(variables.$text-tertiary);
+  @extend .p;
+  color: variables.$text-tertiary;
   position: absolute;
   z-index: 2;
 }
 
-@media only screen and (max-width: variables.$mobile-width) {
+@include for_breakpoint(mobile) {
   .hero-banner {
     height: 700px;
     background-image: url("assets/images/V_redraw-without-bg-1_9.png"), url("assets/images/pexels-pixabay-372470_1.png");
@@ -63,7 +66,7 @@
   }
 }
 
-@media only screen and (min-width: variables.$mobile-width + 1px) and (max-width: variables.$desktop-width - 1px) {
+@include for_breakpoint(tablet) {
 
   .hero-banner {
     height: 661px;
@@ -96,7 +99,7 @@
   }
 }
 
-@media only screen and (min-width: variables.$desktop-width) {
+@include for_breakpoint(desktop) {
   .hero-banner {
     height: 670px;
   }
