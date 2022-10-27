@@ -1,0 +1,12 @@
+@use "variables" as variables;
+
+.button {
+  width: 162.5px;
+  height: 44px;
+  background-color: variables.$btn-bkg-secondary;
+  color: variables.$white-color;
+}
+
+.btn-active{
+  background-color: variables.$btn-bkg-primary;
+}

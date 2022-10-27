@@ -17,6 +17,10 @@ export default {
         {
           title: 'Contact',
           href: '/contact'
+        },
+        {
+          title: 'Resources',
+          href: '/resources'
         }
       ]
     }
