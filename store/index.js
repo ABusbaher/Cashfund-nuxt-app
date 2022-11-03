@@ -13,24 +13,6 @@ export const state = () => ({
   }
 })
 
-// export const getters = {
-//   getPersonalDetails (state) {
-//     return state.personalDetails
-//   },
-//   getFirstName (state) {
-//     return state.personalDetails.firstName
-//   },
-//   getLastName (state) {
-//     return state.personalDetails.lastName
-//   },
-//   getEmail (state) {
-//     return state.personalDetails.email
-//   },
-//   getMobile (state) {
-//     return state.personalDetails.mobile
-//   }
-// }
-
 export const mutations = {
   setPersonalDetailsTitle (state, payload) {
     state.personalDetails.title = payload

@@ -2,9 +2,10 @@ export const state = () => ({
   DonationInformation: {
     accountHolder: '',
     accountNumber: '',
-    amount: '10',
+    amount: null,
     frequency: 'monthly',
-    sortCode: ''
+    confirmAccount: false,
+    confirmPayment: false
   }
 })
 
@@ -21,7 +22,10 @@ export const mutations = {
   setDonationFrequency (state, payload) {
     state.DonationInformation.frequency = payload
   },
-  setDonationSortCode (state, payload) {
-    state.DonationInformation.sortCode = payload
+  setConfirmAccount (state, payload) {
+    state.DonationInformation.confirmAccount = payload
+  },
+  setConfirmPayment (state, payload) {
+    state.DonationInformation.confirmPayment = payload
   }
 }

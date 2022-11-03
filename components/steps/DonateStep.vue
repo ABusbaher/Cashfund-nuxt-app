@@ -1,11 +1,20 @@
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, helpers } from 'vuelidate/lib/validators'
 import { mapState, mapMutations } from 'vuex'
+
+const monthlyAmountValidator = (value, context) => context.type === 'monthly' ? helpers.req(value) : true
+const oneOffAmountValidator = (value, context) => context.type === 'one-off' ? helpers.req(value) : true
 
 export default {
   name: 'DonateStep',
   mixins: [validationMixin],
+  props: {
+    showErrors: {
+      type: Boolean,
+      required: true
+    }
+  },
   data () {
     return {
       form: {
@@ -17,8 +26,7 @@ export default {
       payment: {
         amount: this.$store.state.donation.DonationInformation.amount,
         type: this.$store.state.donation.DonationInformation.frequency
-      },
-      monthlyGiving: true
+      }
     }
   },
   validations: {
@@ -32,6 +40,12 @@ export default {
       email: {
         required,
         email
+      }
+    },
+    payment: {
+      amount: {
+        monthlyAmountValidator,
+        oneOffAmountValidator
       }
     }
   },
@@ -63,9 +77,7 @@ export default {
       'setPersonalDetailsFirstName',
       'setPersonalDetailsLastName',
       'setPersonalDetailsEmail',
-      'setPersonalDetailsTitle',
-      'donation/setDonationAmount',
-      'donation/setDonationFrequency'
+      'setPersonalDetailsTitle'
     ]),
     setFirstName (value) {
       this.form.firstName = value
@@ -88,18 +100,24 @@ export default {
     },
     setDonation (value) {
       this.payment.amount = value
+      this.$v.payment.amount.$touch()
       this.$store.commit('donation/setDonationAmount', value)
     },
     updateDonationFrequency (value) {
+      if (value === this.payment.type) {
+        return
+      }
       if (value === 'monthly') {
         this.$store.commit('donation/setDonationFrequency', value)
         this.payment.type = 'monthly'
-        this.monthlyGiving = true
+        this.$store.commit('donation/setDonationAmount', null)
+        this.payment.amount = null
         return
       }
       this.$store.commit('donation/setDonationFrequency', 'one-off')
       this.payment.type = 'one-off'
-      this.monthlyGiving = false
+      this.$store.commit('donation/setDonationAmount', null)
+      this.payment.amount = null
     }
   }
 }
@@ -127,7 +145,7 @@ export default {
       placeholder="Enter your first name"
       @keyup="setFirstName($event.target.value)"
     >
-    <p v-if="!$v.form.firstName.required" class="error">
+    <p v-if="!$v.form.firstName.required && showErrors" class="error">
       First name is required
     </p>
 
@@ -140,7 +158,7 @@ export default {
       placeholder="Enter your last name"
       @keyup="setLastName($event.target.value)"
     >
-    <p v-if="!$v.form.lastName.required" class="error">
+    <p v-if="!$v.form.lastName.required && showErrors" class="error">
       Last name is required
     </p>
 
@@ -153,28 +171,28 @@ export default {
       placeholder="Enter your email address"
       @keyup="setEmail($event.target.value)"
     >
-    <p v-if="!$v.form.email.required" class="error">
+    <p v-if="!$v.form.email.required && showErrors" class="error">
       Email is required
     </p>
-    <p v-if="!$v.form.email.email" class="error">
+    <p v-if="!$v.form.email.email && showErrors" class="error">
       Not valid email
     </p>
 
     <h3>Your gift</h3>
     <button
-      :class="['button', (monthlyGiving === false) ? 'btn-active' : '']"
+      :class="['button', (payment.type === 'one-off') ? 'btn-active' : '']"
       @click="updateDonationFrequency('one-off')"
     >
       One-off Gift
     </button>
     <button
-      :class="['button', (monthlyGiving === true) ? 'btn-active' : '']"
+      :class="['button', (payment.type === 'monthly') ? 'btn-active' : '']"
       @click="updateDonationFrequency('monthly')"
     >
       Regular giving
     </button>
     <br>
-    <div v-show="monthlyGiving" class="monthly_gift" @change="setDonation($event.target.value)">
+    <div v-show="payment.type === 'monthly'" @change="setDonation($event.target.value)">
       <input
         id="5_monthly"
         type="radio"
@@ -207,8 +225,11 @@ export default {
         :checked="'50' === $store.state.donation.DonationInformation.amount"
       >
       <label for="50_monthly">50€ a month</label>
+      <p v-if="!$v.payment.amount.monthlyAmountValidator && showErrors" class="error">
+        Please select monthly amount to donate
+      </p>
     </div>
-    <div v-show="monthlyGiving === false" class="one-off_gift" @change="setDonation($event.target.value)">
+    <div v-show="payment.type === 'one-off'" @change="setDonation($event.target.value)">
       <input
         id="10_one-time"
         type="radio"
@@ -242,6 +263,9 @@ export default {
         :checked="'100' === $store.state.donation.DonationInformation.amount"
       >
       <label for="100_one-time">100€</label>
+      <p v-if="!$v.payment.amount.oneOffAmountValidator && showErrors" class="error">
+        Please select one off amount to donate
+      </p>
     </div>
   </div>
 </template>
