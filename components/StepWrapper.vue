@@ -56,7 +56,23 @@ export default {
 
 <template>
   <div class="step-wrapper">
-    Progress bar
+    <div class="step-wrapper__progress-bar">
+      <span class="step-wrapper__progress-bar__step1">1</span>
+      <span
+        :class="['step-wrapper__progress-bar__step2', currentStep !== 'donate' ? 'active-step' : '']"
+      >2</span>
+      <span
+        :class="['step-wrapper__progress-bar__step3', (currentStep !== 'donate' && currentStep !== 'personal')
+          ? 'active-step' : '']"
+      >3</span>
+      <span
+        :class="['step-wrapper__progress-bar__step4', (currentStep === 'payment' || currentStep === 'confirmation')
+          ? 'active-step' : '']"
+      >4</span>
+      <span
+        :class="currentStep === 'confirmation' ? 'active-step5' : 'step-wrapper__progress-bar__step5'"
+      />
+    </div>
     <KeepAlive>
       <div v-if="currentStep === 'donate'">
         <DonateStep :show-errors="showErrors" @can-continue="donationStep" />
@@ -77,15 +93,17 @@ export default {
         Bad data sent!
       </div>
     </KeepAlive>
-    <button v-if="currentStep !== 'donate'" @click="previousStep">
-      Previous Step
-    </button>
-    <button
-      v-if="currentStep !== 'confirmation'"
-      :class="['button', this.continue ? 'btn-active' : '']"
-      @click="nextStep"
-    >
-      Next Step
-    </button>
+    <div class="navigation-buttons">
+      <button v-if="currentStep !== 'donate'" class="button btn-active" @click="previousStep">
+        Previous Step
+      </button>
+      <button
+        v-if="currentStep !== 'confirmation'"
+        :class="['button', this.continue ? 'btn-active' : '']"
+        @click="nextStep"
+      >
+        Next Step
+      </button>
+    </div>
   </div>
 </template>

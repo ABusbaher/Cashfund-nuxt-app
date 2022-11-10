@@ -124,148 +124,178 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h3>About you</h3>
-    <label>Title</label>
-    <select @change="setTitle($event.target.value)">
-      <option value="mr" :selected="'mr' === $store.state.personalDetails.title">
-        Mr
-      </option>
-      <option value="mrs" :selected="'mrs' === $store.state.personalDetails.title">
-        Mrs
-      </option>
-    </select>
-    <label for="first-name">First name</label>
-    <input
-      id="first-name"
-      v-model.trim="form.firstName"
-      name="first-name"
-      type="text"
-      :class="['input', ($v.form.firstName.$error) ? 'is-danger' : '']"
-      placeholder="Enter your first name"
-      @keyup="setFirstName($event.target.value)"
-    >
-    <p v-if="!$v.form.firstName.required && showErrors" class="error">
-      First name is required
-    </p>
-
-    <label for="last-name">Last name</label>
-    <input
-      id="last-name"
-      v-model.trim="form.lastName"
-      name="last-name"
-      type="text"
-      placeholder="Enter your last name"
-      @keyup="setLastName($event.target.value)"
-    >
-    <p v-if="!$v.form.lastName.required && showErrors" class="error">
-      Last name is required
-    </p>
-
-    <label for="email">Email</label>
-    <input
-      id="email"
-      v-model.trim="form.email"
-      name="email"
-      type="text"
-      placeholder="Enter your email address"
-      @keyup="setEmail($event.target.value)"
-    >
-    <p v-if="!$v.form.email.required && showErrors" class="error">
-      Email is required
-    </p>
-    <p v-if="!$v.form.email.email && showErrors" class="error">
-      Not valid email
-    </p>
-
-    <h3>Your gift</h3>
-    <button
-      :class="['button', (payment.type === 'one-off') ? 'btn-active' : '']"
-      @click="updateDonationFrequency('one-off')"
-    >
-      One-off Gift
-    </button>
-    <button
-      :class="['button', (payment.type === 'monthly') ? 'btn-active' : '']"
-      @click="updateDonationFrequency('monthly')"
-    >
-      Regular giving
-    </button>
-    <br>
-    <div v-show="payment.type === 'monthly'" @change="setDonation($event.target.value)">
+  <div class="form">
+    <div class="form__input">
+      <h2 class="form__title">
+        About you
+      </h2>
+      <label class="form__input__lbl">Title</label>
+      <select class="form__input__select" @change="setTitle($event.target.value)">
+        <option value="mr" :selected="'mr' === $store.state.personalDetails.title">
+          Mr
+        </option>
+        <option value="mrs" :selected="'mrs' === $store.state.personalDetails.title">
+          Mrs
+        </option>
+      </select>
+      <label for="first-name" class="form__input__lbl">First name</label>
       <input
-        id="5_monthly"
-        type="radio"
-        name="monthly_gift"
-        value="5"
-        :checked="'5' === $store.state.donation.DonationInformation.amount"
+        id="first-name"
+        v-model.trim="form.firstName"
+        name="first-name"
+        type="text"
+        :class="['form__input__txt', ($v.form.firstName.$error) ? 'is-danger' : '']"
+        placeholder="Enter your first name"
+        @keyup="setFirstName($event.target.value)"
       >
-      <label for="5_monthly">5€ a month</label>
-      <input
-        id="10_monthly"
-        type="radio"
-        name="monthly_gift"
-        value="10"
-        :checked="'10' === $store.state.donation.DonationInformation.amount"
-      >
-      <label for="10_monthly">10€ a month</label>
-      <input
-        id="20_monthly"
-        type="radio"
-        name="monthly_gift"
-        value="20"
-        :checked="'20' === $store.state.donation.DonationInformation.amount"
-      >
-      <label for="20_monthly">20€ a month</label>
-      <input
-        id="50_monthly"
-        type="radio"
-        name="monthly_gift"
-        value="50"
-        :checked="'50' === $store.state.donation.DonationInformation.amount"
-      >
-      <label for="50_monthly">50€ a month</label>
-      <p v-if="!$v.payment.amount.monthlyAmountValidator && showErrors" class="error">
-        Please select monthly amount to donate
+      <p v-if="!$v.form.firstName.required && showErrors" class="error-txt">
+        First name is required
       </p>
-    </div>
-    <div v-show="payment.type === 'one-off'" @change="setDonation($event.target.value)">
+
+      <label for="last-name" class="form__input__lbl">Last name</label>
       <input
-        id="10_one-time"
-        type="radio"
-        name="one-off_gift"
-        value="10"
-        :checked="'10' === $store.state.donation.DonationInformation.amount"
-        @change="setDonation($event.target.value)"
+        id="last-name"
+        v-model.trim="form.lastName"
+        name="last-name"
+        type="text"
+        :class="['form__input__txt', ($v.form.lastName.$error) ? 'is-danger' : '']"
+        placeholder="Enter your last name"
+        @keyup="setLastName($event.target.value)"
       >
-      <label for="10_one-time">10€</label>
-      <input
-        id="20_one-time"
-        type="radio"
-        name="one-off_gift"
-        value="20"
-        :checked="'20' === $store.state.donation.DonationInformation.amount"
-      >
-      <label for="20_one-time">20€</label>
-      <input
-        id="50_one-time"
-        type="radio"
-        name="one-off_gift"
-        value="50"
-        :checked="'50' === $store.state.donation.DonationInformation.amount"
-      >
-      <label for="50_one-time">50€</label>
-      <input
-        id="100_one-time"
-        type="radio"
-        name="one-off_gift"
-        value="100"
-        :checked="'100' === $store.state.donation.DonationInformation.amount"
-      >
-      <label for="100_one-time">100€</label>
-      <p v-if="!$v.payment.amount.oneOffAmountValidator && showErrors" class="error">
-        Please select one off amount to donate
+      <p v-if="!$v.form.lastName.required && showErrors" class="error-txt">
+        Last name is required
       </p>
+
+      <label for="email" class="form__input__lbl">Email</label>
+      <input
+        id="email"
+        v-model.trim="form.email"
+        name="email"
+        type="text"
+        :class="['form__input__txt', ($v.form.email.$error) ? 'is-danger' : '']"
+        placeholder="Enter your email address"
+        @keyup="setEmail($event.target.value)"
+      >
+      <p v-if="!$v.form.email.required && showErrors" class="error-txt">
+        Email is required
+      </p>
+      <p v-if="!$v.form.email.email && showErrors" class="error-txt">
+        Not valid email
+      </p>
+
+      <h2 class="form__title">
+        Your gift
+      </h2>
+      <div class="donation-buttons">
+        <button
+          :class="['button', (payment.type === 'one-off') ? 'btn-active' : '']"
+          @click="updateDonationFrequency('one-off')"
+        >
+          One-off Gift
+        </button>
+        <button
+          :class="['button', (payment.type === 'monthly') ? 'btn-active' : '']"
+          @click="updateDonationFrequency('monthly')"
+        >
+          Regular giving
+        </button>
+      </div>
+      <div v-show="payment.type === 'monthly'" class="donation-input" @change="setDonation($event.target.value)">
+        <div class="donation-input__radio">
+          <input
+            id="5_monthly"
+            type="radio"
+            name="monthly_gift"
+            value="5"
+            :checked="'5' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="5_monthly">5€ a month</label>
+        </div>
+        <div class="donation-input__radio">
+          <input
+            id="10_monthly"
+            type="radio"
+            name="monthly_gift"
+            value="10"
+            :checked="'10' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="10_monthly">10€ a month</label>
+        </div>
+        <div class="donation-input__radio">
+          <input
+            id="20_monthly"
+            type="radio"
+            name="monthly_gift"
+            value="20"
+            :checked="'20' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="20_monthly">20€ a month</label>
+        </div>
+        <div class="donation-input__radio">
+          <input
+            id="50_monthly"
+            type="radio"
+            name="monthly_gift"
+            value="50"
+            :checked="'50' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="50_monthly">50€ a month</label>
+        </div>
+
+        <p v-if="!$v.payment.amount.monthlyAmountValidator && showErrors" class="error-txt">
+          Please select monthly amount to donate
+        </p>
+      </div>
+
+      <div v-show="payment.type === 'one-off'" class="donation-input" @change="setDonation($event.target.value)">
+        <div class="donation-input__radio">
+          <input
+            id="10_one-time"
+            type="radio"
+            name="one-off_gift"
+            value="10"
+            :checked="'10' === $store.state.donation.DonationInformation.amount"
+            @change="setDonation($event.target.value)"
+          >
+          <label for="10_one-time">10€</label>
+        </div>
+
+        <div class="donation-input__radio">
+          <input
+            id="20_one-time"
+            type="radio"
+            name="one-off_gift"
+            value="20"
+            :checked="'20' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="20_one-time">20€</label>
+        </div>
+
+        <div class="donation-input__radio">
+          <input
+            id="50_one-time"
+            type="radio"
+            name="one-off_gift"
+            value="50"
+            :checked="'50' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="50_one-time">50€</label>
+        </div>
+        <div class="donation-input__radio">
+          <input
+            id="100_one-time"
+            type="radio"
+            name="one-off_gift"
+            value="100"
+            :checked="'100' === $store.state.donation.DonationInformation.amount"
+          >
+          <label for="100_one-time">100€</label>
+        </div>
+
+        <p v-if="!$v.payment.amount.oneOffAmountValidator && showErrors" class="error-txt">
+          Please select one off amount to donate
+        </p>
+      </div>
     </div>
   </div>
 </template>

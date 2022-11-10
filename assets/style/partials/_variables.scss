@@ -3,6 +3,8 @@ $blue-color: #009CC4;
 $grey-color: #4D4D4D;
 $black-color: #181818;
 $medium-grey-color: #808080;
+$badge-color: #F3F0E9;
+$red-color: #E56C69;
 
 $font-primary: 'PT Serif', sans-serif;
 $font-secondary: 'Montserrat', sans-serif;
@@ -11,10 +13,14 @@ $bkg-primary: $blue-color;
 $bkg-secondary: $white-color;
 $bkg-tertiary: $grey-color;
 $bkg-quaternary: $black-color;
+$bkg-quinary: $badge-color;
+$bkg-error: $red-color;
 
 $text-primary: $grey-color;
 $text-secondary: $medium-grey-color;
 $text-tertiary: $white-color;
+$text-quaternary: $blue-color;
+$text-error: $red-color;
 
 $span-primary: $blue-color;
 

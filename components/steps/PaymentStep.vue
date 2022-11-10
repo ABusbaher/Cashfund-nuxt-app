@@ -2,8 +2,8 @@
 import { validationMixin } from 'vuelidate'
 import { required, numeric, between } from 'vuelidate/lib/validators'
 import { mapState } from 'vuex'
-let twoDigitsCurrentYear = parseInt(new Date().getFullYear().toString().substr(2,2))
-let currentMonth = new Date().getMonth() + 1
+const twoDigitsCurrentYear = parseInt(new Date().getFullYear().toString().substr(2, 2))
+const currentMonth = new Date().getMonth() + 1
 
 export default {
   name: 'PaymentStep',
@@ -30,7 +30,7 @@ export default {
         validFromYear: this.$store.state.payment.PaymentInformation.validFrom.split('/')[1],
         expiryDateMonth: this.$store.state.payment.PaymentInformation.expiryDate.substring(
           0, this.$store.state.payment.PaymentInformation.expiryDate.indexOf('/')),
-        expiryDateYear: this.$store.state.payment.PaymentInformation.expiryDate.split('/')[1],
+        expiryDateYear: this.$store.state.payment.PaymentInformation.expiryDate.split('/')[1]
       }
     }
   },
@@ -41,7 +41,7 @@ export default {
         numeric
       },
       firstName: {
-        required,
+        required
       },
       surname: {
         required
@@ -53,25 +53,25 @@ export default {
       validFromYear: {
         required,
         between: between(twoDigitsCurrentYear - 7, twoDigitsCurrentYear),
-        isCurrentDateOrLess(value, { validFromMonth }) {
+        isCurrentDateOrLess (value, { validFromMonth }) {
           if (parseInt(value) < twoDigitsCurrentYear) {
             return true
           }
-          return parseInt(value) === twoDigitsCurrentYear && parseInt(validFromMonth) <= currentMonth;
+          return parseInt(value) === twoDigitsCurrentYear && parseInt(validFromMonth) <= currentMonth
         }
       },
       expiryDateMonth: {
         required,
-        between: between(1, 12),
+        between: between(1, 12)
       },
       expiryDateYear: {
         required,
         between: between(twoDigitsCurrentYear, twoDigitsCurrentYear + 7),
-        isCurrentDateOrMore(value, { expiryDateMonth }) {
+        isCurrentDateOrMore (value, { expiryDateMonth }) {
           if (parseInt(value) > twoDigitsCurrentYear) {
             return true
           }
-          return parseInt(value) === twoDigitsCurrentYear && parseInt(expiryDateMonth) >= currentMonth;
+          return parseInt(value) === twoDigitsCurrentYear && parseInt(expiryDateMonth) >= currentMonth
         }
       },
       issueNumber: {
@@ -81,7 +81,7 @@ export default {
       securityNumber: {
         required,
         numeric
-      },
+      }
     }
   },
   computed: {
@@ -160,165 +160,187 @@ export default {
       this.paymentInfo.securityNumber = value
       this.$v.paymentInfo.securityNumber.$touch()
       this.$store.commit('payment/setPaymentSecurityNumber', value)
-    },
+    }
   }
 }
 </script>
 
 <template>
-  <div>
-    Payment form
+  <div class="form">
+    <div class="form__input">
+      <h2 class="form__title">
+        Payment details
+      </h2>
+      <label class="form__input__lbl">Card type</label>
+      <select class="form__input__select" @change="setCardType($event.target.value)">
+        <option value="visa" :selected="'visa' === $store.state.payment.PaymentInformation.cardType">
+          Visa debit
+        </option>
+        <option value="master-card" :selected="'master-card' === $store.state.payment.PaymentInformation.cardType">
+          Master Card
+        </option>
+      </select>
 
-    <select @change="setCardType($event.target.value)">
-      <option value="visa" :selected="'visa' === $store.state.payment.PaymentInformation.cardType">
-        Visa debit
-      </option>
-      <option value="master-card" :selected="'master-card' === $store.state.payment.PaymentInformation.cardType">
-        Master Card
-      </option>
-    </select>
+      <label for="cardNumber" class="form__input__lbl">Card number</label>
+      <input
+        id="cardNumber"
+        v-model.trim="paymentInfo.cardNumber"
+        name="cardNumber"
+        type="text"
+        :class="['form__input__txt', ($v.paymentInfo.cardNumber.$error) ? 'is-danger' : '']"
+        placeholder="Enter your card number"
+        @keyup="setCardNumber($event.target.value)"
+      >
+      <p v-if="!$v.paymentInfo.cardNumber.required && showErrors" class="error-txt">
+        Card number is required
+      </p>
+      <p v-if="!$v.paymentInfo.cardNumber.numeric && showErrors" class="error-txt">
+        Only numbers allowed for card number
+      </p>
 
-    <label for="cardNumber">Card number</label>
-    <input
-      id="cardNumber"
-      v-model.trim="paymentInfo.cardNumber"
-      name="cardNumber"
-      type="text"
-      placeholder="Enter your card number"
-      @keyup="setCardNumber($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.cardNumber.required && showErrors" class="error">
-      Card number is required
-    </p>
-    <p v-if="!$v.paymentInfo.cardNumber.numeric && showErrors" class="error">
-      Only numbers allowed for card number
-    </p>
+      <label for="firstName" class="form__input__lbl">First name</label>
+      <input
+        id="firstName"
+        v-model.trim="paymentInfo.firstName"
+        name="firstName"
+        type="text"
+        :class="['form__input__txt', ($v.paymentInfo.firstName.$error) ? 'is-danger' : '']"
+        placeholder="Enter your first name"
+        @keyup="setFirstName($event.target.value)"
+      >
+      <p v-if="!$v.paymentInfo.firstName.required && showErrors" class="error-txt">
+        First name is required
+      </p>
 
-    <label for="firstName">First name</label>
-    <input
-      id="firstName"
-      v-model.trim="paymentInfo.firstName"
-      name="firstName"
-      type="text"
-      placeholder="Enter your first name"
-      @keyup="setFirstName($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.firstName.required && showErrors" class="error">
-      First name is required
-    </p>
+      <label for="surname" class="form__input__lbl">Surname</label>
+      <input
+        id="surname"
+        v-model.trim="paymentInfo.surname"
+        name="firstName"
+        type="text"
+        :class="['form__input__txt', ($v.paymentInfo.surname.$error) ? 'is-danger' : '']"
+        placeholder="Enter your surname"
+        @keyup="setSurname($event.target.value)"
+      >
+      <p v-if="!$v.paymentInfo.surname.required && showErrors" class="error-txt">
+        Surname is required
+      </p>
 
-    <label for="surname">Surname</label>
-    <input
-      id="surname"
-      v-model.trim="paymentInfo.surname"
-      name="firstName"
-      type="text"
-      placeholder="Enter your surname"
-      @keyup="setSurname($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.surname.required && showErrors" class="error">
-      Surname is required
-    </p>
+      <br>
+      <label for="validFromMonth" class="form__input__lbl">Valid from</label>
+      <input
+        id="validFromMonth"
+        v-model.trim="paymentInfo.validFromMonth"
+        name="validFromMonth"
+        type="text"
+        :class="['form__input__small', ($v.paymentInfo.validFromMonth.$error) ? 'is-danger' : '']"
+        @keyup="setValidFromMonth($event.target.value)"
+      >
+      <span class="delimiter">/</span>
+      <input
+        id="validFromYear"
+        v-model.trim="paymentInfo.validFromYear"
+        name="validFromYear"
+        type="text"
+        :class="['form__input__small', ($v.paymentInfo.validFromMonth.$error) ? 'is-danger' : '']"
+        @keyup="setValidFromYear($event.target.value)"
+      >
+      <p v-if="!$v.paymentInfo.validFromMonth.required && showErrors" class="error-txt">
+        Card valid from month is required
+      </p>
+      <p v-if="!$v.paymentInfo.validFromMonth.between && showErrors" class="error-txt">
+        Card valid from month must be between {{ $v.paymentInfo.validFromMonth.$params.between.min }} and
+        {{ $v.paymentInfo.validFromMonth.$params.between.max }}
+      </p>
+      <p v-if="!$v.paymentInfo.validFromYear.required && showErrors" class="error-txt">
+        Card valid from year is required
+      </p>
+      <p v-if="!$v.paymentInfo.validFromYear.between && showErrors" class="error-txt">
+        Card valid from year must be between {{ $v.paymentInfo.validFromYear.$params.between.min }} and
+        {{ $v.paymentInfo.validFromYear.$params.between.max }}
+      </p>
 
-    <br>
-    <label for="validFromMonth">Valid from</label>
-    <input
-      id="validFromMonth"
-      v-model.trim="paymentInfo.validFromMonth"
-      name="validFromMonth"
-      type="text"
-      @keyup="setValidFromMonth($event.target.value)"
-    > /
-    <input
-      id="validFromYear"
-      v-model.trim="paymentInfo.validFromYear"
-      name="validFromYear"
-      type="text"
-      @keyup="setValidFromYear($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.validFromMonth.required && showErrors" class="error">
-      Card valid from month is required
-    </p>
-    <p v-if="!$v.paymentInfo.validFromMonth.between && showErrors">
-      Card valid from month must be between {{$v.paymentInfo.validFromMonth.$params.between.min}} and
-      {{$v.paymentInfo.validFromMonth.$params.between.max}}
-    </p>
-    <p v-if="!$v.paymentInfo.validFromYear.required && showErrors" class="error">
-      Card valid from year is required
-    </p>
-    <p v-if="!$v.paymentInfo.validFromYear.between && showErrors">
-      Card valid from year must be between {{$v.paymentInfo.validFromYear.$params.between.min}} and
-      {{$v.paymentInfo.validFromYear.$params.between.max}}
-    </p>
+      <p v-if="!$v.paymentInfo.validFromYear.isCurrentDateOrLess && showErrors" class="error-txt">
+        Card valid from date can not be in future
+      </p>
+      <br>
+      <label for="expiryDateMonth" class="form__input__lbl">Expiry date</label>
+      <input
+        id="expiryDateMonth"
+        v-model.trim="paymentInfo.expiryDateMonth"
+        name="expiryDateMonth"
+        type="text"
+        :class="['form__input__small', ($v.paymentInfo.expiryDateMonth.$error) ? 'is-danger' : '']"
+        @keyup="setExpiryDateMonth($event.target.value)"
+      >
+      <span class="delimiter">/</span>
+      <input
+        id="expiryDateYear"
+        v-model.trim="paymentInfo.expiryDateYear"
+        name="validFromYear"
+        type="text"
+        :class="['form__input__small', ($v.paymentInfo.expiryDateMonth.$error) ? 'is-danger' : '']"
+        @keyup="setExpiryDateYear($event.target.value)"
+      >
+      <p v-if="!$v.paymentInfo.expiryDateMonth.required && showErrors" class="error-txt">
+        Card expiry date month is required
+      </p>
+      <p v-if="!$v.paymentInfo.expiryDateMonth.between && showErrors" class="error-txt">
+        Card expiry date month must be between {{ $v.paymentInfo.expiryDateMonth.$params.between.min }} and
+        {{ $v.paymentInfo.expiryDateMonth.$params.between.max }}
+      </p>
+      <p v-if="!$v.paymentInfo.expiryDateYear.required && showErrors" class="error-txt">
+        Card expiry date year is required
+      </p>
+      <p v-if="!$v.paymentInfo.expiryDateYear.between && showErrors" class="error-txt">
+        Card expiry date year must be between {{ $v.paymentInfo.expiryDateYear.$params.between.min }} and
+        {{ $v.paymentInfo.expiryDateYear.$params.between.max }}
+      </p>
 
-    <p v-if="!$v.paymentInfo.validFromYear.isCurrentDateOrLess && showErrors" class="error">
-      Card valid from date can not be in future
-    </p>
-    <br>
-    <label for="expiryDateMonth">Expiry date</label>
-    <input
-      id="expiryDateMonth"
-      v-model.trim="paymentInfo.expiryDateMonth"
-      name="expiryDateMonth"
-      type="text"
-      @keyup="setExpiryDateMonth($event.target.value)"
-    > /
-    <input
-      id="expiryDateYear"
-      v-model.trim="paymentInfo.expiryDateYear"
-      name="validFromYear"
-      type="text"
-      @keyup="setExpiryDateYear($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.expiryDateMonth.required && showErrors" class="error">
-      Card expiry date month is required
-    </p>
-    <p v-if="!$v.paymentInfo.expiryDateMonth.between && showErrors">
-      Card expiry date month must be between {{$v.paymentInfo.expiryDateMonth.$params.between.min}} and
-      {{$v.paymentInfo.expiryDateMonth.$params.between.max}}
-    </p>
-    <p v-if="!$v.paymentInfo.expiryDateYear.required && showErrors" class="error">
-      Card expiry date year is required
-    </p>
-    <p v-if="!$v.paymentInfo.expiryDateYear.between && showErrors">
-      Card expiry date year must be between {{$v.paymentInfo.expiryDateYear.$params.between.min}} and
-      {{$v.paymentInfo.expiryDateYear.$params.between.max}}
-    </p>
+      <p v-if="!$v.paymentInfo.expiryDateYear.isCurrentDateOrMore && showErrors" class="error-txt">
+        Card expiry date can not be in the past
+      </p>
 
-    <p v-if="!$v.paymentInfo.expiryDateYear.isCurrentDateOrMore && showErrors" class="error">
-      Card expiry date can not be in the past
-    </p>
+      <label for="issueNumber" class="form__input__lbl">Issue number</label>
+      <input
+        id="issueNumber"
+        v-model.trim="paymentInfo.issueNumber"
+        name="issueNumber"
+        type="text"
+        :class="['form__input__txt', ($v.paymentInfo.issueNumber.$error) ? 'is-danger' : '']"
+        placeholder="Enter your card issue number"
+        @keyup="setIssueNumber($event.target.value)"
+      >
+      <p v-if="!$v.paymentInfo.issueNumber.required && showErrors" class="error-txt">
+        Card issue number is required
+      </p>
+      <p v-if="!$v.paymentInfo.issueNumber.numeric && showErrors" class="error-txt">
+        Only numbers allowed for card issue number
+      </p>
 
-    <label for="issueNumber">Issue number</label>
-    <input
-      id="issueNumber"
-      v-model.trim="paymentInfo.issueNumber"
-      name="issueNumber"
-      type="text"
-      placeholder="Enter your card issue number"
-      @keyup="setIssueNumber($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.issueNumber.required && showErrors" class="error">
-      Card issue number is required
-    </p>
-    <p v-if="!$v.paymentInfo.issueNumber.numeric && showErrors" class="error">
-      Only numbers allowed for card issue number
-    </p>
-
-    <label for="issueNumber">Security number</label>
-    <input
-      id="securityNumber"
-      v-model.trim="paymentInfo.securityNumber"
-      name="securityNumber"
-      type="text"
-      placeholder="Enter your card security number"
-      @keyup="setSecurityNumber($event.target.value)"
-    >
-    <p v-if="!$v.paymentInfo.securityNumber.required && showErrors" class="error">
-      Card security number is required
-    </p>
-    <p v-if="!$v.paymentInfo.securityNumber.numeric && showErrors" class="error">
-      Only numbers allowed for card security number
-    </p>
+      <label for="securityNumber" class="form__input__lbl">Security number</label>
+      <div class="input-with-tooltip">
+        <input
+          id="securityNumber"
+          v-model.trim="paymentInfo.securityNumber"
+          name="securityNumber"
+          type="text"
+          :class="['form__input__txt', ($v.paymentInfo.securityNumber.$error) ? 'is-danger' : '']"
+          placeholder="Enter your card security number"
+          @keyup="setSecurityNumber($event.target.value)"
+        >
+        <div class="img-tooltip">
+          <span class="tooltip tooltip--left" data-text="Check back of card">
+            <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+          </span>
+        </div>
+      </div>
+      <p v-if="!$v.paymentInfo.securityNumber.required && showErrors" class="error-txt">
+        Card security number is required
+      </p>
+      <p v-if="!$v.paymentInfo.securityNumber.numeric && showErrors" class="error-txt">
+        Only numbers allowed for card security number
+      </p>
+    </div>
   </div>
 </template>

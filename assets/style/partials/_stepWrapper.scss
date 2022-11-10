@@ -1,0 +1,128 @@
+@use "variables" as variables;
+@use "extends";
+@import "mixins";
+
+.step-wrapper__progress-bar {
+  height: 44px;
+  width: 100%;
+  padding: 0;
+  margin: 30px 0;
+  background-color: variables.$bkg-secondary;
+  position: relative;
+  @include flexContainer(row, flex-start, left);
+}
+
+.step-wrapper__progress-bar__step1 {
+  border-bottom: 44px solid variables.$bkg-primary;
+  border-right: 18px solid transparent;
+  height: 0;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  font-family: variables.$font-secondary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  color: variables.$text-tertiary;
+}
+.step-wrapper__progress-bar__step2 {
+  width: 20%;
+  height: 44px;
+  transform: skew(22deg);
+  background-color: variables.$bkg-quinary;
+  display: flex;
+  justify-content: center;
+  font-family: variables.$font-secondary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  color: variables.$text-primary;
+}
+.step-wrapper__progress-bar__step3 {
+  width: 20%;
+  height: 44px;
+  transform: skew(22deg);
+  margin: 0 8px;
+  background-color: variables.$bkg-quinary;
+  display: flex;
+  justify-content: center;
+  font-family: variables.$font-secondary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  color: variables.$text-primary;
+}
+.step-wrapper__progress-bar__step4 {
+  width: 20%;
+  height: 44px;
+  transform: skew(22deg);
+  background-color: variables.$bkg-quinary;
+  display: flex;
+  justify-content: center;
+  font-family: variables.$font-secondary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  color: variables.$text-primary;
+}
+.step-wrapper__progress-bar__step5 {
+  width: 20%;
+  border-top: 44px solid variables.$bkg-quinary;
+  border-left: 18px solid transparent;
+  height: 0;
+}
+
+.step-wrapper__progress-bar__step5:after {
+  content: "5";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 90%;
+  top: 2%;
+  font-family: variables.$font-secondary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  color: variables.$text-primary;
+}
+
+.active-step {
+  background-color: variables.$bkg-primary;
+  color: variables.$text-tertiary;
+}
+
+.active-step5 {
+  width: 20%;
+  border-top: 44px solid variables.$bkg-primary;
+  border-left: 18px solid transparent;
+  height: 0;
+}
+
+.active-step5:after {
+  content: "5";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 90%;
+  top: 2%;
+  font-family: variables.$font-secondary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  color: variables.$text-tertiary;
+}
+
+.navigation-buttons {
+  @include flexContainer(row, space-around, center);
+  background-color: variables.$bkg-quinary;
+  padding: 4% 0 8% 0;
+}
+
+
+

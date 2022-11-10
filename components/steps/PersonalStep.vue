@@ -1,6 +1,6 @@
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
@@ -30,16 +30,6 @@ export default {
   },
   validations: {
     form: {
-      firstName: {
-        required
-      },
-      lastName: {
-        required
-      },
-      email: {
-        required,
-        email
-      },
       mobile: {
         required
       },
@@ -84,10 +74,6 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'setPersonalDetailsFirstName',
-      'setPersonalDetailsLastName',
-      'setPersonalDetailsEmail',
-      'setPersonalDetailsTitle',
       'setPersonalDetailsMobile',
       'setPersonalDetailsPostcode',
       'setPersonalDetailsHouseNumber',
@@ -95,25 +81,6 @@ export default {
       'setPersonalDetailsCity',
       'setPersonalDetailsCountry'
     ]),
-    setFirstName (value) {
-      this.form.firstName = value
-      this.$v.form.firstName.$touch()
-      this.setPersonalDetailsFirstName(value)
-    },
-    setLastName (value) {
-      this.form.lastName = value
-      this.$v.form.lastName.$touch()
-      this.setPersonalDetailsLastName(value)
-    },
-    setEmail (value) {
-      this.form.email = value
-      this.$v.form.email.$touch()
-      this.setPersonalDetailsEmail(value)
-    },
-    setTitle (value) {
-      this.form.title = value
-      this.setPersonalDetailsTitle(value)
-    },
     setMobile (value) {
       this.form.mobile = value
       this.$v.form.mobile.$touch()
@@ -149,133 +116,166 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h3>Personal details</h3>
-    <label>Title</label>
-    <select @change="setTitle($event.target.value)">
-      <option value="mr" :selected="'mr' === $store.state.personalDetails.title">
-        Mr
-      </option>
-      <option value="mrs" :selected="'mrs' === $store.state.personalDetails.title">
-        Mrs
-      </option>
-    </select>
-    <label for="first-name">First name</label>
-    <input
-      id="first-name"
-      v-model.trim="form.firstName"
-      name="first-name"
-      type="text"
-      :class="['input', ($v.form.firstName.$error) ? 'is-danger' : '']"
-      placeholder="Enter your first name"
-      @keyup="setFirstName($event.target.value)"
-    >
-    <p v-if="!$v.form.firstName.required && showErrors" class="error">
-      First name is required
-    </p>
+  <div class="form">
+    <div class="form__input">
+      <h2 class="form__title">
+        Personal details
+      </h2>
+      <label for="title" class="form__input__lbl">Title</label>
 
-    <label for="last-name">Last name</label>
-    <input
-      id="last-name"
-      v-model.trim="form.lastName"
-      name="last-name"
-      type="text"
-      placeholder="Enter your last name"
-      @keyup="setLastName($event.target.value)"
-    >
-    <p v-if="!$v.form.lastName.required && showErrors" class="error">
-      Last name is required
-    </p>
+      <div class="form__input__disabled">
+        <input
+          id="title"
+          name="title"
+          type="text"
+          :value="form.title"
+          disabled
+        >
+        <span
+          class="tooltip tooltip--left"
+          data-text="Already entered value, if you want to change it please go to previous steps"
+        >
+          <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+        </span>
+      </div>
 
-    <label for="email">Email</label>
-    <input
-      id="email"
-      v-model.trim="form.email"
-      name="email"
-      type="text"
-      placeholder="Enter your email address"
-      @keyup="setEmail($event.target.value)"
-    >
-    <p v-if="!$v.form.email.required && showErrors" class="error">
-      Email is required
-    </p>
-    <p v-if="!$v.form.email.email && showErrors" class="error">
-      Not valid email
-    </p>
+      <label for="first-name" class="form__input__lbl">First name</label>
 
-    <label for="mobile">Mobile</label>
-    <input
-      id="mobile"
-      v-model.trim="form.mobile"
-      name="mobile"
-      type="text"
-      placeholder="Enter your mobile phone"
-      @keyup="setMobile($event.target.value)"
-    >
-    <p v-if="!$v.form.mobile.required && showErrors" class="error">
-      Mobile phone is required
-    </p>
+      <div class="form__input__disabled">
+        <input
+          id="first-name"
+          name="first-name"
+          class="form__input__txt"
+          type="text"
+          :value="form.firstName"
+          disabled
+        >
+        <span
+          class="tooltip tooltip--left"
+          data-text="Already entered value, if you want to change it please go to previous steps"
+        >
+          <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+        </span>
+      </div>
 
-    <h3>Billing address</h3>
-    <label for="postcode">Postcode</label>
-    <input
-      id="postcode"
-      v-model.trim="form.postcode"
-      name="postcode"
-      type="text"
-      placeholder="Enter your post code"
-      @keyup="setPostCode($event.target.value)"
-    >
-    <p v-if="!$v.form.postcode.required && showErrors" class="error">
-      Post code is required
-    </p>
-    <label for="houseNumber">House number</label>
-    <input
-      id="houseNumber"
-      v-model.trim="form.houseNumber"
-      name="houseNumber"
-      type="text"
-      placeholder="Enter your house number"
-      @keyup="setHouseNumber($event.target.value)"
-    >
-    <p v-if="!$v.form.houseNumber.required && showErrors" class="error">
-      House number is required
-    </p>
-    <label for="street">Street</label>
-    <input
-      id="street"
-      v-model.trim="form.street"
-      name="street"
-      type="text"
-      placeholder="Enter your street"
-      @keyup="setStreet($event.target.value)"
-    >
-    <p v-if="!$v.form.street.required && showErrors" class="error">
-      Street is required
-    </p>
-    <label for="city">City</label>
-    <input
-      id="city"
-      v-model.trim="form.city"
-      name="city"
-      type="text"
-      placeholder="Enter your city"
-      @keyup="setCity($event.target.value)"
-    >
-    <p v-if="!$v.form.city.required && showErrors" class="error">
-      City is required
-    </p>
-    <label for="country">Country</label>
-    <input
-      id="country"
-      v-model.trim="form.country"
-      name="country"
-      type="text"
-      placeholder="Enter your country"
-      @keyup="setCountry($event.target.value)"
-    >
-    <p v-if="!$v.form.country.required && showErrors" class="error">
-      Country is required
-    </p>
+      <label for="last-name" class="form__input__lbl">Last name</label>
+      <div class="form__input__disabled">
+        <input
+          id="last-name"
+          class="form__input__txt"
+          name="last-name"
+          type="text"
+          :value="form.lastName"
+          disabled
+        >
+        <span
+          class="tooltip tooltip--left"
+          data-text="Already entered value, if you want to change it please go to previous steps"
+        >
+          <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+        </span>
+      </div>
+
+      <label for="email" class="form__input__lbl">Email</label>
+      <div class="form__input__disabled">
+        <input
+          id="email"
+          name="email"
+          class="form__input__txt"
+          type="text"
+          :value="form.email"
+          disabled
+        >
+        <span
+          class="tooltip tooltip--left"
+          data-text="Already entered value, if you want to change it please go to previous steps"
+        >
+          <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+        </span>
+      </div>
+
+      <label for="mobile" class="form__input__lbl">Mobile</label>
+      <input
+        id="mobile"
+        v-model.trim="form.mobile"
+        name="mobile"
+        :class="['form__input__txt', ($v.form.mobile.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your mobile phone"
+        @keyup="setMobile($event.target.value)"
+      >
+      <p v-if="!$v.form.mobile.required && showErrors" class="error-txt">
+        Mobile phone is required
+      </p>
+
+      <h2 class="form__title">
+        Billing address
+      </h2>
+      <label for="postcode" class="form__input__lbl">Postcode</label>
+      <input
+        id="postcode"
+        v-model.trim="form.postcode"
+        name="postcode"
+        :class="['form__input__txt', ($v.form.postcode.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your post code"
+        @keyup="setPostCode($event.target.value)"
+      >
+      <p v-if="!$v.form.postcode.required && showErrors" class="error-txt">
+        Post code is required
+      </p>
+      <label for="houseNumber" class="form__input__lbl">House number</label>
+      <input
+        id="houseNumber"
+        v-model.trim="form.houseNumber"
+        name="houseNumber"
+        :class="['form__input__txt', ($v.form.houseNumber.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your house number"
+        @keyup="setHouseNumber($event.target.value)"
+      >
+      <p v-if="!$v.form.houseNumber.required && showErrors" class="error-txt">
+        House number is required
+      </p>
+      <label for="street" class="form__input__lbl">Street</label>
+      <input
+        id="street"
+        v-model.trim="form.street"
+        name="street"
+        :class="['form__input__txt', ($v.form.street.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your street"
+        @keyup="setStreet($event.target.value)"
+      >
+      <p v-if="!$v.form.street.required && showErrors" class="error-txt">
+        Street is required
+      </p>
+      <label for="city" class="form__input__lbl">City</label>
+      <input
+        id="city"
+        v-model.trim="form.city"
+        name="city"
+        :class="['form__input__txt', ($v.form.city.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your city"
+        @keyup="setCity($event.target.value)"
+      >
+      <p v-if="!$v.form.city.required && showErrors" class="error-txt">
+        City is required
+      </p>
+      <label for="country" class="form__input__lbl">Country</label>
+      <input
+        id="country"
+        v-model.trim="form.country"
+        name="country"
+        :class="['form__input__txt', ($v.form.country.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your country"
+        @keyup="setCountry($event.target.value)"
+      >
+      <p v-if="!$v.form.country.required && showErrors" class="error-txt">
+        Country is required
+      </p>
+    </div>
   </div>
 </template>

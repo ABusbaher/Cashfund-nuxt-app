@@ -33,13 +33,6 @@ export default {
         required,
         numeric
       },
-      amount: {
-        required,
-        numeric
-      },
-      type: {
-        required
-      },
       confirmAccount: {
         required: function () {
           return this.donationInfo.confirmAccount
@@ -85,16 +78,6 @@ export default {
       this.$v.donationInfo.accountNumber.$touch()
       this.$store.commit('donation/setDonationAccountNumber', value)
     },
-    setAmount (value) {
-      this.donationInfo.amount = value
-      this.$v.donationInfo.amount.$touch()
-      this.$store.commit('donation/setDonationAmount', value)
-    },
-    setFrequency (value) {
-      this.donationInfo.type = value
-      this.$v.donationInfo.type.$touch()
-      this.$store.commit('donation/setDonationFrequency', value)
-    },
     setConfirmAccount (value) {
       this.donationInfo.confirmAccount = value
       this.$v.donationInfo.confirmAccount.$touch()
@@ -110,101 +93,125 @@ export default {
 </script>
 
 <template>
-  <div>
-    Donation Info form
-    <label for="accountHolder">Name of Account holder</label>
-    <input
-      id="accountHolder"
-      v-model.trim="donationInfo.accountHolder"
-      name="accountHolder"
-      type="text"
-      placeholder="Enter your account holder name"
-      @keyup="setAccountHolder($event.target.value)"
-    >
-    <p v-if="!$v.donationInfo.accountHolder.required && showErrors" class="error">
-      Account holder name is required
-    </p>
+  <div class="form">
+    <div class="form__input">
+      <h2 class="form__title">
+        Donation information
+      </h2>
+      <label for="accountHolder" class="form__input__lbl">Name of Account holder</label>
+      <input
+        id="accountHolder"
+        v-model.trim="donationInfo.accountHolder"
+        name="accountHolder"
+        :class="['form__input__txt', ($v.donationInfo.accountHolder.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your account holder name"
+        @keyup="setAccountHolder($event.target.value)"
+      >
+      <p v-if="!$v.donationInfo.accountHolder.required && showErrors" class="error-txt">
+        Account holder name is required
+      </p>
 
-    <label for="accountNumber">Account number</label>
-    <input
-      id="accountNumber"
-      v-model.trim="donationInfo.accountNumber"
-      name="accountNumber"
-      type="text"
-      placeholder="Enter your account number"
-      @keyup="setAccountNumber($event.target.value)"
-    >
-    <p v-if="!$v.donationInfo.accountNumber.required && showErrors" class="error">
-      Account number name is required
-    </p>
-    <p v-if="!$v.donationInfo.accountNumber.numeric && showErrors" class="error">
-      Only numbers allowed for account number
-    </p>
+      <label for="accountNumber" class="form__input__lbl">Account number</label>
+      <input
+        id="accountNumber"
+        v-model.trim="donationInfo.accountNumber"
+        name="accountNumber"
+        :class="['form__input__txt', ($v.donationInfo.accountNumber.$error) ? 'is-danger' : '']"
+        type="text"
+        placeholder="Enter your account number"
+        @keyup="setAccountNumber($event.target.value)"
+      >
+      <p v-if="!$v.donationInfo.accountNumber.required && showErrors" class="error-txt">
+        Account number name is required
+      </p>
+      <p v-if="!$v.donationInfo.accountNumber.numeric && showErrors" class="error-txt">
+        Only numbers allowed for account number
+      </p>
 
-    <label for="amount">Your donation</label>
-    <input
-      id="amount"
-      v-model.trim="donationInfo.amount"
-      name="amount"
-      type="text"
-      placeholder="Enter your donation amount"
-      @keyup="setAmount($event.target.value)"
-    >
-    <p v-if="!$v.donationInfo.amount.required && showErrors" class="error">
-      Donation amount is required
-    </p>
-    <p v-if="!$v.donationInfo.amount.numeric && showErrors" class="error">
-      Only numbers allowed for donation amount
-    </p>
+      <label for="amount" class="form__input__lbl">Your donation</label>
+      <div class="form__input__disabled">
+        <input
+          id="amount"
+          name="amount"
+          type="text"
+          :value="'€ ' + donationInfo.amount"
+          disabled
+        >
+        <span
+          class="tooltip tooltip--left"
+          data-text="Already entered value, if you want to change it please go to previous steps"
+        >
+          <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+        </span>
+      </div>
 
-    <select @change="setFrequency($event.target.value)">
-      <option value="monthly" :selected="'monthly' === $store.state.donation.DonationInformation.frequency">
-        Monthly
-      </option>
-      <option value="one-off" :selected="'one-off' === $store.state.donation.DonationInformation.frequency">
-        One-off
-      </option>
-    </select>
+      <label for="frequency" class="form__input__lbl">Payment frequency</label>
+      <div class="form__input__disabled">
+        <input
+          id="frequency"
+          name="amount"
+          type="text"
+          :value="donationInfo.type"
+          disabled
+        >
+        <span
+          class="tooltip tooltip--left"
+          data-text="Already entered value, if you want to change it please go to previous steps"
+        >
+          <img :src="require('/assets/images/icons/help_outline.svg')" alt="tooltip">
+        </span>
+      </div>
 
-    <input
-      id="confirmAccount"
-      type="checkbox"
-      name="confirmAccount"
-      :value="donationInfo.confirmAccount"
-      :checked="donationInfo.confirmAccount"
-      @change="setConfirmAccount($event.target.checked)"
-    >
-    <label for="confirmAccount">
-      I confirm that I am the account holder and the only person required to authorise debits from this account.
-    </label><br>
-    <p v-if="!$v.donationInfo.confirmAccount.required && showErrors" class="error">
-      Please confirm that you are account holder
-    </p>
+      <div class="form__input__checkbox">
+        <input
+          id="confirmAccount"
+          type="checkbox"
+          name="confirmAccount"
+          :value="donationInfo.confirmAccount"
+          :checked="donationInfo.confirmAccount"
+          @change="setConfirmAccount($event.target.checked)"
+        >
+        <label for="confirmAccount">
+          I confirm that I am the account holder and the only person required to authorise debits from this account.
+        </label>
+      </div>
+      <p v-if="!$v.donationInfo.confirmAccount.required && showErrors" class="error-txt">
+        Please confirm that you are account holder
+      </p>
 
-    <p>
-      I confirm I have paid or will pay an amount of Income Tax and / or Capital Gains Tax for each tax year
-      (6 April to 5 April) that is at least equal to the amount of tax that all the charities or
-      Community Amateur Sports Clubs (CASs) that I donate to will reclaim on my gifts for that tax year.
-      By ticking this box I confirm that I want to treat all donations I have made for the last 4 years
-      and any future donations I may make, as Gift aid donations until further notice.
-    </p>
-    <p>
-      I understand that other taxes such as VAT and Council Tax do not qualify. I understand the charity will redeem
-      28p of tax on every €1 that I give or after 6 April 2019.
-    </p>
-    <input
-      id="confirmPayment"
-      type="checkbox"
-      name="confirmPayment"
-      :value="donationInfo.confirmPayment"
-      :checked="donationInfo.confirmPayment"
-      @change="setConfirmPayment($event.target.checked)"
-    >
-    <label for="confirmAccount">
-      I have read and I understand the above statement.
-    </label><br>
-    <p v-if="!$v.donationInfo.confirmPayment.required && showErrors" class="error">
-      Please confirm that you accept above statement
-    </p>
+      <h2 class="form__title">
+        Gift aid
+      </h2>
+      <div class="licence-agreement">
+        <p>
+          I confirm I have paid or will pay an amount of Income Tax and / or Capital Gains Tax for each tax year
+          (6 April to 5 April) that is at least equal to the amount of tax that all the charities or
+          Community Amateur Sports Clubs (CASs) that I donate to will reclaim on my gifts for that tax year.
+          By ticking this box I confirm that I want to treat all donations I have made for the last 4 years
+          and any future donations I may make, as Gift aid donations until further notice.
+        </p>
+        <p>
+          I understand that other taxes such as VAT and Council Tax do not qualify. I understand the charity will redeem
+          28p of tax on every €1 that I give or after 6 April 2019.
+        </p>
+        <div class="form__input__checkbox">
+          <input
+            id="confirmPayment"
+            type="checkbox"
+            name="confirmPayment"
+            :value="donationInfo.confirmPayment"
+            :checked="donationInfo.confirmPayment"
+            @change="setConfirmPayment($event.target.checked)"
+          >
+          <label for="confirmAccount">
+            I have read and I understand the above statement.
+          </label>
+        </div>
+        <p v-if="!$v.donationInfo.confirmPayment.required && showErrors" class="error-txt">
+          Please confirm that you accept above statement
+        </p>
+      </div>
+    </div>
   </div>
 </template>

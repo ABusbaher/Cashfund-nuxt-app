@@ -29,7 +29,7 @@ export const mutations = {
   },
   setPaymentValidFromMonth (state, payload) {
     state.PaymentInformation.validFrom =
-     payload + '/' + state.PaymentInformation.validFrom.substring(state.PaymentInformation.validFrom.indexOf("/") + 1)
+     payload + '/' + state.PaymentInformation.validFrom.substring(state.PaymentInformation.validFrom.indexOf('/') + 1)
   },
   setPaymentValidFromYear (state, payload) {
     state.PaymentInformation.validFrom =
@@ -40,7 +40,7 @@ export const mutations = {
   },
   setPaymentExpiryDateMonth (state, payload) {
     state.PaymentInformation.expiryDate =
-      payload + '/' + state.PaymentInformation.expiryDate.substring(state.PaymentInformation.expiryDate.indexOf("/") + 1)
+      payload + '/' + state.PaymentInformation.expiryDate.substring(state.PaymentInformation.expiryDate.indexOf('/') + 1)
   },
   setPaymentExpiryDateYear (state, payload) {
     state.PaymentInformation.expiryDate =
