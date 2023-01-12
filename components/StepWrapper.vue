@@ -4,6 +4,7 @@ import PaymentStep from '@/components/steps/PaymentStep'
 import DonationInfoStep from '@/components/steps/DonationInfoStep'
 import PersonalStep from '@/components/steps/PersonalStep'
 import ConfirmationStep from '@/components/steps/ConfirmationStep'
+import AllStepsWithError from "@/components/steps/AllStepsWithError";
 
 export default {
   name: 'StepWrapper',
@@ -12,14 +13,16 @@ export default {
     PaymentStep,
     DonationInfoStep,
     PersonalStep,
-    ConfirmationStep
+    ConfirmationStep,
+    AllStepsWithError
   },
   data () {
     return {
       steps: ['donate', 'personal', 'donation-info', 'payment', 'confirmation'],
       currentStep: 'donate',
       continue: '',
-      showErrors: false
+      showErrors: false,
+      forceActive: true,
     }
   },
   methods: {
@@ -56,25 +59,39 @@ export default {
 
 <template>
   <div class="step-wrapper">
-    <div class="step-wrapper__progress-bar">
-      <span class="step-wrapper__progress-bar__step1">1</span>
+    <div class="step-wrapper__progress-bar" v-show="forceActive === false">
+      <span class="step-wrapper__progress-bar__step1"
+            data-text = "1"
+            data-text-desktop = "1 - Donate"
+      />
       <span
         :class="['step-wrapper__progress-bar__step2', currentStep !== 'donate' ? 'active-step' : '']"
-      >2</span>
+        data-text = "2"
+        data-text-desktop = "2 - Personal"
+      />
       <span
         :class="['step-wrapper__progress-bar__step3', (currentStep !== 'donate' && currentStep !== 'personal')
           ? 'active-step' : '']"
-      >3</span>
+        data-text = "3"
+        data-text-desktop = "3 - Donation info"
+      />
       <span
         :class="['step-wrapper__progress-bar__step4', (currentStep === 'payment' || currentStep === 'confirmation')
           ? 'active-step' : '']"
-      >4</span>
+        data-text = "4"
+        data-text-desktop = "4 - Payment"
+      />
       <span
         :class="currentStep === 'confirmation' ? 'active-step5' : 'step-wrapper__progress-bar__step5'"
+        data-text = "5"
+        data-text-desktop = "5 - Confirmation"
       />
     </div>
     <KeepAlive>
-      <div v-if="currentStep === 'donate'">
+      <div v-if="forceActive === true">
+        <AllStepsWithError />
+      </div>
+      <div v-else-if="currentStep === 'donate'">
         <DonateStep :show-errors="showErrors" @can-continue="donationStep" />
       </div>
       <div v-else-if="currentStep === 'personal'">

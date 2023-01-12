@@ -225,8 +225,8 @@ export default {
       <p v-if="!$v.paymentInfo.surname.required && showErrors" class="error-txt">
         Surname is required
       </p>
-
-      <br>
+    </div>
+    <div class="form__input no-title">
       <label for="validFromMonth" class="form__input__lbl">Valid from</label>
       <input
         id="validFromMonth"

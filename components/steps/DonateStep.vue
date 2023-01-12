@@ -182,7 +182,8 @@ export default {
       <p v-if="!$v.form.email.email && showErrors" class="error-txt">
         Not valid email
       </p>
-
+    </div>
+    <div class="form__input">
       <h2 class="form__title">
         Your gift
       </h2>

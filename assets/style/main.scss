@@ -45,6 +45,7 @@ ul {
   }
 
   .main-container {
+    min-width: 1024px;
     max-width: 1440px;
     background-color: variables.$bkg-secondary;
   }

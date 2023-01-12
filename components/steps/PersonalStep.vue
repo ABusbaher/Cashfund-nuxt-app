@@ -207,7 +207,9 @@ export default {
       <p v-if="!$v.form.mobile.required && showErrors" class="error-txt">
         Mobile phone is required
       </p>
+    </div>
 
+    <div class="form__input">
       <h2 class="form__title">
         Billing address
       </h2>

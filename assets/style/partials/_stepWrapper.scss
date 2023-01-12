@@ -17,8 +17,16 @@
   border-right: 18px solid transparent;
   height: 0;
   width: 20%;
-  display: flex;
-  justify-content: center;
+  color: variables.$text-tertiary;
+}
+
+.step-wrapper__progress-bar__step1:after {
+  content: attr(data-text);
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 8%;
+  top: 2%;
   font-family: variables.$font-secondary;
   font-style: normal;
   font-weight: 600;
@@ -26,49 +34,38 @@
   line-height: 38px;
   color: variables.$text-tertiary;
 }
+
 .step-wrapper__progress-bar__step2 {
   width: 20%;
   height: 44px;
   transform: skew(22deg);
   background-color: variables.$bkg-quinary;
-  display: flex;
-  justify-content: center;
-  font-family: variables.$font-secondary;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 38px;
+}
+
+.step-wrapper__progress-bar__step2:after {
+  @extend .step-wrapper__progress-bar__step1, :after;
+  left: 50%;
+  border: none;
   color: variables.$text-primary;
 }
+
 .step-wrapper__progress-bar__step3 {
-  width: 20%;
-  height: 44px;
-  transform: skew(22deg);
+  @extend .step-wrapper__progress-bar__step2;
   margin: 0 8px;
-  background-color: variables.$bkg-quinary;
-  display: flex;
-  justify-content: center;
-  font-family: variables.$font-secondary;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 38px;
-  color: variables.$text-primary;
 }
+
+.step-wrapper__progress-bar__step3:after {
+  @extend .step-wrapper__progress-bar__step1, :after;
+}
+
 .step-wrapper__progress-bar__step4 {
-  width: 20%;
-  height: 44px;
-  transform: skew(22deg);
-  background-color: variables.$bkg-quinary;
-  display: flex;
-  justify-content: center;
-  font-family: variables.$font-secondary;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 38px;
-  color: variables.$text-primary;
+  @extend .step-wrapper__progress-bar__step2;
 }
+
+.step-wrapper__progress-bar__step4:after {
+  @extend .step-wrapper__progress-bar__step1, :after;
+}
+
 .step-wrapper__progress-bar__step5 {
   width: 20%;
   border-top: 44px solid variables.$bkg-quinary;
@@ -77,21 +74,14 @@
 }
 
 .step-wrapper__progress-bar__step5:after {
-  content: "5";
-  position: absolute;
-  width: 12px;
-  height: 12px;
+  @extend .step-wrapper__progress-bar__step1, :after;
   left: 90%;
   top: 2%;
-  font-family: variables.$font-secondary;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 38px;
+  border: none;
   color: variables.$text-primary;
 }
 
-.active-step {
+.active-step, .active-step:after {
   background-color: variables.$bkg-primary;
   color: variables.$text-tertiary;
 }
@@ -104,18 +94,10 @@
 }
 
 .active-step5:after {
-  content: "5";
-  position: absolute;
-  width: 12px;
-  height: 12px;
+  @extend .step-wrapper__progress-bar__step1, :after;
   left: 90%;
   top: 2%;
-  font-family: variables.$font-secondary;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 38px;
-  color: variables.$text-tertiary;
+  border: none;
 }
 
 .navigation-buttons {
@@ -124,5 +106,26 @@
   padding: 4% 0 8% 0;
 }
 
+@include for_breakpoint(desktop) {
+  .step-wrapper__progress-bar__step1:after {
+    content: attr(data-text-desktop);
+    text-align: left;
+    display: inline-block;
+    left: 6%;
+    top: 20%;
+    width: 140px;
+    font-family: variables.$font-secondary;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
 
+  .step-wrapper__progress-bar__step2:after {
+    left: 25%;
+  }
+
+  .step-wrapper__progress-bar__step5:after, .active-step5:after {
+    left: 85%;
+  }
+}
 

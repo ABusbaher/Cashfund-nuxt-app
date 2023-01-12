@@ -179,7 +179,8 @@ export default {
       <p v-if="!$v.donationInfo.confirmAccount.required && showErrors" class="error-txt">
         Please confirm that you are account holder
       </p>
-
+    </div>
+    <div class="form__input">
       <h2 class="form__title">
         Gift aid
       </h2>
